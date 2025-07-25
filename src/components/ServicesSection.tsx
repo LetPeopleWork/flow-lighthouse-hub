@@ -1,4 +1,4 @@
-import { GraduationCap, Users, MessageSquare, ArrowRight } from "lucide-react";
+import { GraduationCap, Users, MessageSquare, ArrowRight, Mail, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -6,39 +6,42 @@ const ServicesSection = () => {
   const services = [
     {
       icon: <GraduationCap className="h-8 w-8" />,
-      title: "Training Programs",
-      description: "Comprehensive Flow and Obeya training programs designed to transform your team's understanding and application of these methodologies.",
+      title: "Workshops & Trainings",
+      description: "Comprehensive Flow and Obeya training programs for teams and organizations ready to transform their way of working.",
       features: [
-        "Certified Flow practitioners",
-        "Hands-on workshops", 
-        "Custom curriculum",
-        "Progress tracking"
+        "Public workshops for individuals",
+        "Private trainings for teams", 
+        "Custom curriculum design",
+        "Hands-on practical sessions"
       ],
-      cta: "Explore Training"
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "Workshops & Events",
-      description: "Interactive workshops and events that bring teams together to learn, practice, and master Flow and Obeya principles in real-world scenarios.",
-      features: [
-        "Interactive sessions",
-        "Real-world scenarios",
-        "Team building",
-        "Expert facilitation"
-      ],
-      cta: "Book Workshop"
+      audience: "For teams wanting to learn and improve",
+      connection: "Don't understand what you see in the data?"
     },
     {
       icon: <MessageSquare className="h-8 w-8" />,
-      title: "Expert Consulting",
-      description: "Strategic consulting services to help organizations implement Flow and Obeya methodologies effectively and sustainably.",
+      title: "Consulting",
+      description: "Strategic consulting to transform your organization's approach to Flow and Obeya, from assessment to full implementation.",
       features: [
-        "Strategic planning",
-        "Implementation guidance",
-        "Ongoing support",
-        "Measurable results"
+        "Organizational assessment",
+        "Implementation strategy",
+        "Change management support",
+        "Long-term transformation guidance"
       ],
-      cta: "Get Consultation"
+      audience: "For organizations ready for change",
+      connection: "Don't like what you see in your metrics?"
+    },
+    {
+      icon: <Wrench className="h-8 w-8" />,
+      title: "Tool Support",
+      description: "Technical support and customization for Lighthouse and other Flow tools to fit your specific organizational needs.",
+      features: [
+        "Custom dashboard setup",
+        "Integration with existing tools",
+        "Advanced configuration",
+        "Technical troubleshooting"
+      ],
+      audience: "For teams needing technical assistance",
+      connection: "Don't see any meaningful numbers?"
     }
   ];
 
@@ -48,15 +51,15 @@ const ServicesSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-            Expert{" "}
+            Our{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Know-How
+              Expertise
             </span>{" "}
             & Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Beyond tools, we offer deep expertise in Flow and Obeya methodologies through 
-            comprehensive training, workshops, and strategic consulting services.
+            Comprehensive support from tool implementation to organizational transformation. 
+            We bring both the technology and the know-how to make it work for you.
           </p>
         </div>
 
@@ -77,6 +80,10 @@ const ServicesSection = () => {
               </CardHeader>
               
               <CardContent className="space-y-6">
+                <div className="text-sm text-primary font-medium border border-primary/20 rounded-lg p-3 bg-primary/5">
+                  {service.audience}
+                </div>
+                
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
@@ -86,44 +93,29 @@ const ServicesSection = () => {
                   ))}
                 </ul>
                 
-                <Button variant="outline" className="w-full group">
-                  {service.cta}
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <div className="border-t border-border pt-4">
+                  <p className="text-sm text-muted-foreground italic">
+                    {service.connection}
+                  </p>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Expertise Highlight */}
-        <div className="text-center bg-background/80 backdrop-blur-sm rounded-2xl p-12 border border-border">
+        {/* Get Started CTA */}
+        <div className="text-center bg-gradient-subtle rounded-2xl p-12 border border-border">
           <h3 className="text-2xl font-bold text-foreground mb-6">
-            Why Choose Our Expertise?
+            Ready to Get Started?
           </h3>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">15+</div>
-              <div className="text-muted-foreground">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">500+</div>
-              <div className="text-muted-foreground">Professionals Trained</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">100+</div>
-              <div className="text-muted-foreground">Organizations Transformed</div>
-            </div>
-          </div>
-
-          <p className="text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Our deep expertise in Flow and Obeya methodologies, combined with proven training frameworks 
-            and real-world implementation experience, ensures your team gets the most effective guidance.
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Contact us to discuss how we can help you transform your team's approach to Flow and Obeya.
           </p>
-
-          <Button variant="hero" size="lg" className="group">
-            Start Your Transformation
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+          <Button variant="hero" size="lg" className="group" asChild>
+            <a href="mailto:contact@letpeople.work">
+              <Mail className="mr-2 h-5 w-5" />
+              Contact Us
+            </a>
           </Button>
         </div>
       </div>

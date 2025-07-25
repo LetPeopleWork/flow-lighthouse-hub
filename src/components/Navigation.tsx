@@ -34,9 +34,6 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="hero" size="sm" className="ml-4">
-              Get Started
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -64,11 +61,6 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
-              <div className="px-3 py-2">
-                <Button variant="hero" size="sm" className="w-full">
-                  Get Started
-                </Button>
-              </div>
             </div>
           </div>
         )}

@@ -56,15 +56,15 @@ const EventsSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-            Upcoming{" "}
+            Upcoming Public{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               Events
             </span>{" "}
             & Training
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Join our community of Flow practitioners through training sessions, workshops, 
-            and conference presentations. Stay ahead with the latest methodologies and insights.
+            Join our public workshops, training sessions, and conference appearances to learn 
+            Flow and Obeya methodologies alongside professionals from various industries.
           </p>
         </div>
 
@@ -124,30 +124,24 @@ const EventsSection = () => {
           ))}
         </div>
 
-        {/* Newsletter Signup */}
+        {/* CTA Section */}
         <div className="text-center bg-gradient-subtle rounded-2xl p-12 border border-border">
           <h3 className="text-2xl font-bold text-foreground mb-4">
-            Stay Connected with Our Community
+            Looking for Something Specific?
           </h3>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Get notified about upcoming events, new training programs, and exclusive insights 
-            from our Flow and Obeya experts. Join our growing community of practitioners.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-            />
-            <Button variant="hero" className="sm:px-8">
-              Subscribe
-            </Button>
+          <div className="space-y-4 max-w-2xl mx-auto mb-8">
+            <p className="text-muted-foreground">
+              • <strong>Didn't find the training you're looking for?</strong>
+            </p>
+            <p className="text-muted-foreground">
+              • <strong>Interested in a private training for your team?</strong>
+            </p>
           </div>
-          
-          <p className="text-xs text-muted-foreground mt-4">
-            We respect your privacy. Unsubscribe at any time.
-          </p>
+          <Button variant="hero" size="lg" asChild>
+            <a href="mailto:contact@letpeople.work">
+              Contact Us
+            </a>
+          </Button>
         </div>
       </div>
     </section>
