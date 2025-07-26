@@ -19,13 +19,9 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-in">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Unlock{" "}
+            Unlock the full potential of your organization with our{" "}
             <span className="bg-gradient-hero bg-clip-text text-transparent">
-              Flow, Obeya & Portfolio
-            </span>{" "}
-            Excellence with{" "}
-            <span className="bg-gradient-hero bg-clip-text text-transparent">
-              Tools & Expertise
+              Tool and Expertise
             </span>
           </h1>
           
