@@ -1,50 +1,76 @@
-import { Calendar, Clock, MapPin, Users, ExternalLink } from "lucide-react";
+import { Calendar, Clock, MapPin, ExternalLink, GraduationCap, Wrench, Mic, Building, DollarSign, Star, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
+// Types: Training, Workshop, Talk, Conference
+
 const EventsSection = () => {
   const upcomingEvents = [
     {
-      type: "Training",
-      title: "Flow Fundamentals Certification",
-      date: "March 15-17, 2024",
-      time: "9:00 AM - 5:00 PM",
-      location: "San Francisco, CA",
-      attendees: "25 spots",
-      status: "open",
-      description: "A comprehensive 3-day certification program covering the core principles and practical applications of Flow methodology."
+      type: "Workshop",
+      title: "Introduction to Probabilistic Forecasting",
+      date: "Aug 22, 2025",
+      time: "14:00 - 16:00 CEST",
+      location: "Online, Zoom",
+      price: "200$",
+      description: `What's MCS and how does it work? How is it different from "traditional estimation"? What are the prerequisites and how to get started?
+
+Why this session?
+When plans collide with reality, single-point ("most likely") estimates rarely hold up. Probabilistic forecasting gives you a fuller picture—showing the range of outcomes and their likelihood—so you can make calmer, evidence-based decisions about budgets, timelines, capacity and risk.
+
+We will explain how MCS works, how you gather the data, how you apply it and what data you need to run a MCS in your context.`,
+      ctaText: "Register Now",
+      ctaLink: "https://www.tickettailor.com/events/letpeoplework/1724396"
     },
     {
       type: "Workshop",
-      title: "Obeya Implementation Workshop", 
-      date: "April 8, 2024",
-      time: "10:00 AM - 4:00 PM",
-      location: "Virtual",
-      attendees: "50 spots",
-      status: "filling",
-      description: "Hands-on workshop focusing on implementing Obeya practices in your organization for improved visual management."
+      title: "The Flow Show",
+      date: "Aug 26, 2025",
+      time: "16:00 – 20:00 CEST",
+      location: "Munich, Germany",
+      price: "Free for the first 5 registrations, then 100$",
+      description: "This will be an interactive unconference—you bring the topics you care about, and we’ll explore them together. Whether you're into forecasting with your data, understanding what makes systems predictable, or just want to nerd out on metrics, this is your playground. We can talk about the theory, or dive in hands-on (yes - you can also bring your data if you want!).",
+      ctaText: "Register",
+      ctaLink: "https://forms.gle/6CEWzjvSkr4TWF5z8"
     },
     {
-      type: "Conference",
-      title: "FlowCon 2024 Keynote",
-      date: "May 20, 2024", 
-      time: "2:00 PM - 3:00 PM",
-      location: "Austin, TX",
-      attendees: "1000+ expected",
-      status: "speaking",
-      description: "Join our keynote presentation on 'The Future of Flow: AI-Powered Productivity Insights' at FlowCon 2024."
+      type: "Workshop",
+      title: "Service Level Expectations & Right Sizing",
+      date: "Sep 5, 2025",
+      time: "14:00 - 16:00 CEST",
+      location: "Online, Zoom",
+      price: "200$",
+      description: `What's an SLE and what can we use it for? What's Right-Sizing? How to use SLE's for "estimation".
+
+When work arrives unpredictably, teams struggle to promise when something will be done and how big it should be. In this session you’ll learn two complementary levers—Service Level Expectations (SLEs) and Right-Sizing—that turn fuzzy commitments into clear, data-driven conversations.`,
+      ctaText: "Register Now",
+      ctaLink: "https://www.tickettailor.com/events/letpeoplework/1724397"
+    },
+    {
+      type: ["Talk", "Workshop"],
+      title: "AgileByExample 2025",
+      date: "Oct 6 - 8, 2025",
+      location: "Warsaw, Poland",
+      price: "See Conference Website",
+      description: `Join us at AgileByExample 2025, where we will be hosting our signature workshop "Flowbeya - How visualizing Flow Metrics on an Obeya can guide your Team" as well as presenting a brand new talk "How it's all connected: From Flow Metrics to Product KPIs".
+      
+      We're looking forward to sharing insights, but also to connecting with you in person!`,
+      ctaText: "Get Tickets",
+      ctaLink: "https://agilebyexample.com/"
     }
   ];
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case "open":
-        return <Badge className="bg-green-100 text-green-800 hover:bg-green-100">Open Registration</Badge>;
-      case "filling":
-        return <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">Filling Fast</Badge>;
-      case "speaking":
-        return <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">Speaking Event</Badge>;
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      case "Training":
+        return <GraduationCap className="h-4 w-4" />;
+      case "Workshop":
+        return <Wrench className="h-4 w-4" />;
+      case "Talk":
+        return <Mic className="h-4 w-4" />;
+      case "Conference":
+        return <Building className="h-4 w-4" />;
       default:
         return null;
     }
@@ -56,15 +82,13 @@ const EventsSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-            Upcoming Public{" "}
+            See us{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Events
+              Live!
             </span>{" "}
-            & Training
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Join our public workshops, training sessions, and conference appearances to learn 
-            Flow and Obeya methodologies alongside professionals from various industries.
+            Join our public workshops, trainings, or meet us at conferences.
           </p>
         </div>
 
@@ -73,51 +97,65 @@ const EventsSection = () => {
           {upcomingEvents.map((event, index) => (
             <Card key={index} className="group hover:shadow-medium transition-all duration-300 border-0 shadow-soft">
               <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-2">
-                  <Badge variant="outline" className="text-primary border-primary">
-                    {event.type}
-                  </Badge>
-                  {getStatusBadge(event.status)}
+                <div className="flex items-center mb-2 gap-2 flex-wrap">
+                  {Array.isArray(event.type) ? (
+                    event.type.map((type) => (
+                      <Badge key={type} variant="outline" className="text-primary border-primary flex items-center gap-1">
+                        {getTypeIcon(type)}
+                        {type}
+                      </Badge>
+                    ))
+                  ) : (
+                    <Badge variant="outline" className="text-primary border-primary flex items-center gap-1">
+                      {getTypeIcon(event.type)}
+                      {event.type}
+                    </Badge>
+                  )}
                 </div>
-                
+
                 <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                   {event.title}
                 </CardTitle>
-                
+
                 <CardDescription className="text-muted-foreground">
                   {event.description}
                 </CardDescription>
               </CardHeader>
-              
+
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4 mr-3 text-primary" />
                     {event.date}
                   </div>
-                  
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 mr-3 text-primary" />
-                    {event.time}
-                  </div>
-                  
+
+                  {event.time && (
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <Clock className="h-4 w-4 mr-3 text-primary" />
+                      {event.time}
+                    </div>
+                  )}
+
                   <div className="flex items-center text-sm text-muted-foreground">
                     <MapPin className="h-4 w-4 mr-3 text-primary" />
                     {event.location}
                   </div>
-                  
+
                   <div className="flex items-center text-sm text-muted-foreground">
-                    <Users className="h-4 w-4 mr-3 text-primary" />
-                    {event.attendees}
+                    <DollarSign className="h-4 w-4 mr-3 text-primary" />
+                    {event.price}
                   </div>
                 </div>
-                
-                <Button 
-                  variant={event.status === "speaking" ? "outline" : "default"} 
+
+                <Button
+                  variant="default"
                   className="w-full group"
+                  asChild
                 >
-                  {event.status === "speaking" ? "Learn More" : "Register Now"}
-                  <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <a href={event.ctaLink} target="_blank" rel="noopener noreferrer">
+                    {event.ctaText}
+                    <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </Button>
               </CardContent>
             </Card>
@@ -126,20 +164,49 @@ const EventsSection = () => {
 
         {/* CTA Section */}
         <div className="text-center bg-gradient-subtle rounded-2xl p-12 border border-border">
-          <h3 className="text-2xl font-bold text-foreground mb-4">
-            Looking for Something Specific?
-          </h3>
-          <div className="space-y-4 max-w-2xl mx-auto mb-8">
-            <p className="text-muted-foreground">
-              • <strong>Didn't find the training you're looking for?</strong>
-            </p>
-            <p className="text-muted-foreground">
-              • <strong>Interested in a private training for your team?</strong>
-            </p>
+          <div className="flex justify-center mb-6">
+            <div className="bg-primary/10 rounded-full p-4">
+              <MessageCircle className="h-8 w-8 text-primary" />
+            </div>
           </div>
+          
+          <h3 className="text-3xl font-bold text-foreground mb-6">
+            Need Something{" "}
+            <span className="bg-gradient-primary bg-clip-text text-transparent">
+              Tailored?
+            </span>
+          </h3>
+          
+          <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
+            We believe in the power of collaboration. All our trainings, workshops, and consulting services are delivered by our expert pairs to ensure you get the best insights and diverse perspectives.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
+            <div className="bg-background/50 rounded-xl p-6 border border-border/50">
+              <div className="flex items-center justify-center mb-4">
+                <Star className="h-6 w-6 text-primary mr-2" />
+                <h4 className="text-lg font-semibold text-foreground">Custom Training & Private Workshops</h4>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Didn't find exactly what you're looking for? We create bespoke training programs and private workshops tailored to your team's specific needs and challenges. Get exclusive attention for your team with our expert pairs delivering maximum impact.
+              </p>
+            </div>
+            
+            <div className="bg-background/50 rounded-xl p-6 border border-border/50">
+              <div className="flex items-center justify-center mb-4">
+                <DollarSign className="h-6 w-6 text-primary mr-2" />
+                <h4 className="text-lg font-semibold text-foreground">Pricing</h4>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Private events start at $1,000 per event (not per attendee). Perfect for teams of up to 30 people looking for focused, collaborative learning experiences.
+              </p>
+            </div>
+          </div>
+
           <Button variant="hero" size="lg" asChild>
             <a href="mailto:contact@letpeople.work">
-              Contact Us
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Let's Talk
             </a>
           </Button>
         </div>

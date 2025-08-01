@@ -1,3 +1,6 @@
+import PeterImage from '../assets/Peter.png';
+import BenjiImage from '../assets/Benji.png';
+
 const ExpertiseSection = () => {
   return (
     <section className="py-20 bg-background">
@@ -10,7 +13,14 @@ const ExpertiseSection = () => {
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto text-left">
             {/* Peter's section */}
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-primary">Peter Zylka-Greger</h3>
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold text-primary mb-3">Peter Zylka-Greger</h3>
+                <img 
+                  src={PeterImage} 
+                  alt="Peter Zylka-Greger" 
+                  className="w-20 h-20 rounded-full object-cover border-2 border-primary/20 mx-auto"
+                />
+              </div>
               <p className="text-muted-foreground">
                 For years I have been working with teams worldwide, experiencing what great teams can achieve. 
                 But also seeing that success isn't just about putting individuals together—it requires the right 
@@ -25,7 +35,14 @@ const ExpertiseSection = () => {
 
             {/* Benjamin's section */}
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-primary">Benjamin Huser-Berta</h3>
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold text-primary mb-3">Benjamin Huser-Berta</h3>
+                <img 
+                  src={BenjiImage} 
+                  alt="Benjamin Huser-Berta" 
+                  className="w-20 h-20 rounded-full object-cover border-2 border-primary/20 mx-auto"
+                />
+              </div>
               <p className="text-muted-foreground">
                 As a Software Engineer and Scrum Master, I've seen teams struggle with wasteful processes 
                 and overwhelming workloads that kill motivation. I believe work can be creative and fun when 

@@ -5,43 +5,40 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 const ServicesSection = () => {
   const services = [
     {
-      icon: <GraduationCap className="h-8 w-8" />,
-      title: "Workshops & Trainings",
-      description: "Comprehensive Flow and Obeya training programs for teams and organizations ready to transform their way of working.",
+      icon: <Wrench className="h-8 w-8" />,
+      title: "Tool Support",
+      description: "Help you customize Lighthouse to fit your specific organizational needs.",
       features: [
-        "Public workshops for individuals",
-        "Private trainings for teams", 
-        "Custom curriculum design",
-        "Hands-on practical sessions"
+        "Initial setup and configuration",
+        "Custom Feature Development",
+        "Technical troubleshooting"
       ],
-      audience: "For teams wanting to learn and improve",
-      connection: "Don't understand what you see in the data?"
+      audience: "For teams needing technical assistance",
+      connection: "Don't see the numbers?"
+    },
+    {
+      icon: <GraduationCap className="h-8 w-8" />,
+      title: "Training",
+      description: "Custom trainings and workshops that fit what you need.",
+      features: [
+        "ProKanban.org Trainings",
+        "Tailored Workshops based on your needs", 
+        "Hands-on practical sessions with your data"
+      ],
+      audience: "For organizations that want to become more data-driven",
+      connection: "Don't understand the numbers?"
     },
     {
       icon: <MessageSquare className="h-8 w-8" />,
       title: "Consulting",
-      description: "Strategic consulting to transform your organization's approach to Flow and Obeya, from assessment to full implementation.",
+      description: "Expert guidance to help you achieve a better Flow.",
       features: [
-        "Organizational assessment",
-        "Implementation strategy",
-        "Change management support",
-        "Long-term transformation guidance"
+        "Initial Assessment based on your data",
+        "Implementation Strategy and Proposed Focus Areas",
+        "Long-term Support through continuous engagements"
       ],
       audience: "For organizations ready for change",
-      connection: "Don't like what you see in your metrics?"
-    },
-    {
-      icon: <Wrench className="h-8 w-8" />,
-      title: "Tool Support",
-      description: "Technical support and customization for Lighthouse and other Flow tools to fit your specific organizational needs.",
-      features: [
-        "Custom dashboard setup",
-        "Integration with existing tools",
-        "Advanced configuration",
-        "Technical troubleshooting"
-      ],
-      audience: "For teams needing technical assistance",
-      connection: "Don't see any meaningful numbers?"
+      connection: "Don't like the numbers?"
     }
   ];
 
@@ -66,25 +63,25 @@ const ServicesSection = () => {
         {/* Services Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
-            <Card key={index} className="group hover:shadow-medium transition-all duration-300 border-0 bg-background/80 backdrop-blur-sm">
-              <CardHeader className="text-center pb-4">
+            <Card key={index} className="group hover:shadow-medium transition-all duration-300 border-0 bg-background/80 backdrop-blur-sm flex flex-col h-full">
+              <CardHeader className="text-center pb-4 flex-shrink-0">
                 <div className="mx-auto w-16 h-16 bg-accent rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-200 mb-4">
                   {service.icon}
                 </div>
-                <CardTitle className="text-xl font-bold text-foreground">
+                <CardTitle className="text-xl font-bold text-foreground mb-3">
                   {service.title}
                 </CardTitle>
-                <CardDescription className="text-muted-foreground">
+                <CardDescription className="text-muted-foreground min-h-[3rem] flex items-center justify-center">
                   {service.description}
                 </CardDescription>
               </CardHeader>
               
-              <CardContent className="space-y-6">
+              <CardContent className="flex flex-col flex-grow space-y-6">
                 <div className="text-sm text-primary font-medium border border-primary/20 rounded-lg p-3 bg-primary/5">
-                  {service.audience}
+                  {service.connection}
                 </div>
                 
-                <ul className="space-y-2">
+                <ul className="space-y-2 flex-grow">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
                       <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0" />
@@ -93,9 +90,10 @@ const ServicesSection = () => {
                   ))}
                 </ul>
                 
-                <div className="border-t border-border pt-4">
-                  <p className="text-sm text-muted-foreground italic">
-                    {service.connection}
+                <div className="border-t border-border pt-4 flex items-center mt-auto">
+                  <Users className="h-4 w-4 text-muted-foreground mr-2 flex-shrink-0" />
+                  <p className="text-sm text-muted-foreground">
+                    {service.audience}
                   </p>
                 </div>
               </CardContent>
@@ -109,7 +107,7 @@ const ServicesSection = () => {
             Ready to Get Started?
           </h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Contact us to discuss how we can help you transform your team's approach to Flow and Obeya.
+            Contact us to discuss how we can help
           </p>
           <Button variant="hero" size="lg" className="group" asChild>
             <a href="mailto:contact@letpeople.work">

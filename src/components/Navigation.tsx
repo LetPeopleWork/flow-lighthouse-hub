@@ -1,24 +1,35 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Lighthouse", href: "#lighthouse" },
-    { name: "Services", href: "#services" },
-    { name: "Events", href: "#events" },
+    { name: "Home", href: "#home", isHash: true },
+    { name: "Lighthouse", href: location.pathname === "/lighthouse" ? "#lighthouse" : "/lighthouse", isHash: false },
+    { name: "Services", href: "#services", isHash: true },
+    { name: "Events", href: "#events", isHash: true },
+    { name: "Stay Connected", href: "#stay-connected", isHash: true },
   ];
+
+  const handleNavClick = (item: typeof navItems[0]) => {
+    if (item.isHash && location.pathname !== "/") {
+      // If we're not on home page and clicking a hash link, go to home first
+      window.location.href = "/" + item.href;
+    }
+    setIsOpen(false);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <a href="#home" className="flex items-center">
+            <a href="/" className="flex items-center">
               <img src={logo} alt="#LetPeople.work" className="h-8" />
             </a>
           </div>
@@ -29,6 +40,7 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={() => handleNavClick(item)}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
               >
                 {item.name}
@@ -56,7 +68,7 @@ const Navigation = () => {
                   key={item.name}
                   href={item.href}
                   className="block px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-accent transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleNavClick(item)}
                 >
                   {item.name}
                 </a>
