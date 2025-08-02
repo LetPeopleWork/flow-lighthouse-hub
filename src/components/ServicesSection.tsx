@@ -1,43 +1,28 @@
 import { GraduationCap, Users, MessageSquare, ArrowRight, Mail, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 
 const ServicesSection = () => {
   const services = [
     {
       icon: <Wrench className="h-8 w-8" />,
       title: "Tool Support",
-      description: "Help you customize Lighthouse to fit your specific organizational needs.",
-      features: [
-        "Initial setup and configuration",
-        "Custom Feature Development",
-        "Technical troubleshooting"
-      ],
-      audience: "For teams needing technical assistance",
+      description: "We help you customize Lighthouse to fit your specific organizational needs, ensuring you get the most value from your data.",
+      audience: "If you need technical assistance",
       connection: "Don't see the numbers?"
     },
     {
       icon: <GraduationCap className="h-8 w-8" />,
       title: "Training",
-      description: "Custom trainings and workshops that fit what you need.",
-      features: [
-        "ProKanban.org Trainings",
-        "Tailored Workshops based on your needs", 
-        "Hands-on practical sessions with your data"
-      ],
-      audience: "For organizations that want to become more data-driven",
+      description: "Through custom trainings and workshops, we help your team understand and effectively use flow metrics to drive improvements.",
+      audience: "If you want to become more data-driven",
       connection: "Don't understand the numbers?"
     },
     {
       icon: <MessageSquare className="h-8 w-8" />,
       title: "Consulting",
-      description: "Expert guidance to help you achieve a better Flow.",
-      features: [
-        "Initial Assessment based on your data",
-        "Implementation Strategy and Proposed Focus Areas",
-        "Long-term Support through continuous engagements"
-      ],
-      audience: "For organizations ready for change",
+      description: "Our expert guidance helps you interpret your metrics and develop actionable strategies to achieve better flow and organizational performance.",
+      audience: "If you want continuous guidance",
       connection: "Don't like the numbers?"
     }
   ];
@@ -62,35 +47,22 @@ const ServicesSection = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
-            <Card key={index} className="group hover:shadow-medium transition-all duration-300 border-0 bg-background/80 backdrop-blur-sm flex flex-col h-full">
-              <CardHeader className="text-center pb-4 flex-shrink-0">
+          {services.map((service) => (
+            <Card key={service.title} className="group hover:shadow-medium transition-all duration-300 border-0 bg-background/80 backdrop-blur-sm flex flex-col h-full">
+              <CardHeader className="text-center pb-4 flex-shrink-0 h-96">
                 <div className="mx-auto w-16 h-16 bg-accent rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-200 mb-4">
                   {service.icon}
                 </div>
-                <CardTitle className="text-xl font-bold text-foreground mb-3">
-                  {service.title}
-                </CardTitle>
-                <CardDescription className="text-muted-foreground min-h-[3rem] flex items-center justify-center">
+                <div className="text-lg font-semibold text-primary mb-4 bg-primary/10 rounded-lg py-2 px-4 border border-primary/20 h-12 flex items-center justify-center">
+                  {service.connection}
+                </div>
+                <CardDescription className="text-muted-foreground flex items-center justify-center flex-grow">
                   {service.description}
                 </CardDescription>
               </CardHeader>
               
-              <CardContent className="flex flex-col flex-grow space-y-6">
-                <div className="text-sm text-primary font-medium border border-primary/20 rounded-lg p-3 bg-primary/5">
-                  {service.connection}
-                </div>
-                
-                <ul className="space-y-2 flex-grow">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="border-t border-border pt-4 flex items-center mt-auto">
+              <CardContent className="flex flex-col justify-end flex-grow h-20">
+                <div className="border-t border-border pt-4 flex items-center">
                   <Users className="h-4 w-4 text-muted-foreground mr-2 flex-shrink-0" />
                   <p className="text-sm text-muted-foreground">
                     {service.audience}
