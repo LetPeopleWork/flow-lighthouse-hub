@@ -234,7 +234,7 @@ const Lighthouse = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="hero" size="lg" className="group">
                     <Download className="mr-2 h-4 w-4" />
-                    Download Lighthouse
+                    Download Free Version
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -289,39 +289,177 @@ const Lighthouse = () => {
         </div>
       </section>
 
-      {/* Premium Features Section */}
+      {/* Overview Section with Screenshots */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Premium Enterprise Features
+              See Lighthouse in Action
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Scale beyond the open source core with enterprise-grade features designed for large organizations.
+              Explore the intuitive interface and powerful features that make flow visualization effortless.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {premiumFeatures.map((feature) => (
-              <Card key={feature.title} className="border-0 shadow-soft hover:shadow-medium transition-all duration-300 group">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-primary mx-auto mb-4 group-hover:scale-110 transition-transform duration-200">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-center">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-foreground">
+                Real-time Flow Visualization
+              </h3>
+              <p className="text-muted-foreground">
+                Watch your work items flow through your process in real-time. Identify bottlenecks, track progress, 
+                and get instant insights into your team's performance.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Interactive flow diagrams and charts</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Live work item tracking across teams</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Automated performance calculations</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-primary rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+                alt="Lighthouse Dashboard Preview"
+                className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Premium Section */}
+      <section className="py-20 bg-gradient-subtle">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Why Choose Premium?
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
+              While our open-source version provides powerful flow metrics, Premium unlocks enterprise-grade 
+              capabilities that scale with your organization's growth and complexity.
+            </p>
           </div>
           
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg">
-              Contact Sales for Enterprise Pricing
-            </Button>
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+              <h3 className="text-2xl font-bold text-foreground mb-6">
+                Enterprise-Ready Features
+              </h3>
+              <div className="space-y-6">
+                {premiumFeatures.map((feature) => (
+                  <div key={feature.title} className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center text-primary flex-shrink-0">
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        {feature.title}
+                      </h4>
+                      <p className="text-muted-foreground">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-background rounded-2xl p-8 shadow-soft border border-border">
+              <h4 className="text-xl font-bold text-foreground mb-6 text-center">
+                What You Get with Premium
+              </h4>
+              <ul className="space-y-4">
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Unlimited teams and portfolios</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Advanced security & compliance features</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Multiple platform integrations</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Machine learning-powered analytics</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Priority support & training</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted-foreground">Custom reporting & dashboards</span>
+                </li>
+              </ul>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* License Purchase Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Get Your Premium License
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Purchase your Lighthouse Premium license and unlock the full potential of flow-based project management.
+            </p>
+          </div>
+          
+          <Card className="border-0 shadow-medium hover:shadow-glow transition-all duration-300">
+            <CardContent className="p-12">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Shield className="h-10 w-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Lighthouse Premium License
+                </h3>
+                <p className="text-muted-foreground mb-8">
+                  One-time payment for lifetime access to all premium features. No recurring fees.
+                </p>
+                
+                <div className="mb-8">
+                  <div className="text-4xl font-bold text-foreground mb-2">
+                    $499 <span className="text-lg font-normal text-muted-foreground">USD</span>
+                  </div>
+                  <p className="text-muted-foreground">One-time payment • Lifetime license</p>
+                </div>
+                
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-primary hover:opacity-90 transition-opacity text-white px-8 py-3"
+                  onClick={() => {
+                    // TODO: Implement Stripe checkout
+                    console.log('Purchase license clicked - Stripe integration needed');
+                  }}
+                >
+                  Purchase License Now
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                
+                <p className="text-xs text-muted-foreground mt-4">
+                  Secure payment via Stripe • 30-day money-back guarantee
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
