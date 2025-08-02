@@ -1,7 +1,10 @@
-import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, Users, Globe, Gauge, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, Users, Globe, Gauge, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, User, Mail, Building } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Navigation from "@/components/Navigation";
 import SimpleFooter from "@/components/SimpleFooter";
@@ -12,6 +15,12 @@ const Lighthouse = () => {
   const [isLoadingVersion, setIsLoadingVersion] = useState(false);
   const [copiedCommand, setCopiedCommand] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [showLicenseDetails, setShowLicenseDetails] = useState(false);
+  const [purchaseForm, setPurchaseForm] = useState({
+    name: '',
+    email: '',
+    organization: ''
+  });
   
   // Fetch latest version from GitHub releases
   useEffect(() => {
@@ -418,45 +427,146 @@ const Lighthouse = () => {
               Get Your Premium License
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Purchase your Lighthouse Premium license and unlock the full potential of flow-based project management.
+              Purchase your Lighthouse Premium license and unlock enterprise-grade features for your organization.
             </p>
           </div>
           
           <Card className="border-0 shadow-medium hover:shadow-glow transition-all duration-300">
             <CardContent className="p-12">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Shield className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Lighthouse Premium License
-                </h3>
-                <p className="text-muted-foreground mb-8">
-                  One-time payment for lifetime access to all premium features. No recurring fees.
-                </p>
-                
-                <div className="mb-8">
-                  <div className="text-4xl font-bold text-foreground mb-2">
-                    $499 <span className="text-lg font-normal text-muted-foreground">USD</span>
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
+                {/* License Info */}
+                <div>
+                  <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mb-6">
+                    <Shield className="h-10 w-10 text-white" />
                   </div>
-                  <p className="text-muted-foreground">One-time payment • Lifetime license</p>
+                  <h3 className="text-2xl font-bold text-foreground mb-4">
+                    Lighthouse Premium License
+                  </h3>
+                  <p className="text-muted-foreground mb-6">
+                    One-year premium license with enterprise features and unlimited users.
+                  </p>
+                  
+                  <div className="mb-6">
+                    <div className="text-4xl font-bold text-foreground mb-2">
+                      $999 <span className="text-lg font-normal text-muted-foreground">USD</span>
+                    </div>
+                    <p className="text-muted-foreground">One-time payment • Valid for 1 year</p>
+                  </div>
+
+                  {/* License Highlights */}
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                      <span className="text-muted-foreground">Use in up to 50 instances</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                      <span className="text-muted-foreground">Valid for 1 year</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                      <span className="text-muted-foreground">Unlimited users</span>
+                    </div>
+                  </div>
+
+                  {/* License Details Collapsible */}
+                  <Collapsible open={showLicenseDetails} onOpenChange={setShowLicenseDetails}>
+                    <CollapsibleTrigger asChild>
+                      <Button variant="outline" size="sm" className="mb-4">
+                        License Details
+                        {showLicenseDetails ? (
+                          <ChevronUp className="ml-2 h-4 w-4" />
+                        ) : (
+                          <ChevronDown className="ml-2 h-4 w-4" />
+                        )}
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="space-y-2">
+                      <div className="p-4 bg-accent/20 rounded-lg text-sm text-muted-foreground">
+                        <h4 className="font-semibold text-foreground mb-2">Full License Terms:</h4>
+                        <ul className="space-y-1">
+                          <li>• License valid for 365 days from purchase date</li>
+                          <li>• Maximum 50 concurrent Lighthouse instances</li>
+                          <li>• Unlimited user accounts per instance</li>
+                          <li>• Includes all premium features and integrations</li>
+                          <li>• Commercial use permitted within licensed organization</li>
+                          <li>• No redistribution or resale allowed</li>
+                          <li>• Priority email support included</li>
+                          <li>• License renewal required after expiration</li>
+                        </ul>
+                        <p className="mt-3 text-xs">
+                          For trial licenses or custom enterprise agreements, please contact us at sales@letpeople.work
+                        </p>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </div>
-                
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-primary hover:opacity-90 transition-opacity text-white px-8 py-3"
-                  onClick={() => {
-                    // TODO: Implement Stripe checkout
-                    console.log('Purchase license clicked - Stripe integration needed');
-                  }}
-                >
-                  Purchase License Now
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                
-                <p className="text-xs text-muted-foreground mt-4">
-                  Secure payment via Stripe • 30-day money-back guarantee
-                </p>
+
+                {/* Purchase Form */}
+                <div className="bg-gradient-subtle rounded-xl p-8">
+                  <h4 className="text-xl font-bold text-foreground mb-6">
+                    License Information
+                  </h4>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="flex items-center space-x-2">
+                        <User className="h-4 w-4" />
+                        <span>Full Name</span>
+                      </Label>
+                      <Input
+                        id="name"
+                        placeholder="Enter your full name"
+                        value={purchaseForm.name}
+                        onChange={(e) => setPurchaseForm({...purchaseForm, name: e.target.value})}
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="flex items-center space-x-2">
+                        <Mail className="h-4 w-4" />
+                        <span>Email Address</span>
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email address"
+                        value={purchaseForm.email}
+                        onChange={(e) => setPurchaseForm({...purchaseForm, email: e.target.value})}
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="organization" className="flex items-center space-x-2">
+                        <Building className="h-4 w-4" />
+                        <span>Organization</span>
+                      </Label>
+                      <Input
+                        id="organization"
+                        placeholder="Enter your organization name"
+                        value={purchaseForm.organization}
+                        onChange={(e) => setPurchaseForm({...purchaseForm, organization: e.target.value})}
+                      />
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    size="lg" 
+                    className="w-full bg-gradient-primary hover:opacity-90 transition-opacity text-white"
+                    disabled={!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization}
+                    onClick={() => {
+                      // TODO: Implement Stripe checkout with form data
+                      console.log('Purchase license clicked with data:', purchaseForm);
+                    }}
+                  >
+                    Purchase License Now
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  
+                  <p className="text-xs text-muted-foreground text-center mt-4">
+                    Secure payment via Stripe • Need a trial? Email us at sales@letpeople.work
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
