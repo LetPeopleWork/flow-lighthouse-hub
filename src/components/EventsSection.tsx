@@ -6,11 +6,12 @@ import { Badge } from "@/components/ui/badge";
 // Types: Training, Workshop, Talk, Conference
 
 const EventsSection = () => {
-  const upcomingEvents = [
+  const allEvents = [
     {
       type: "Workshop",
       title: "Introduction to Probabilistic Forecasting",
-      date: "Aug 22, 2025",
+      date: new Date("2025-08-22"),
+      displayDate: "Aug 22, 2025",
       time: "14:00 - 16:00 CEST",
       location: "Online, Zoom",
       price: "200$",
@@ -26,7 +27,8 @@ We will explain how MCS works, how you gather the data, how you apply it and wha
     {
       type: "Workshop",
       title: "The Flow Show",
-      date: "Aug 26, 2025",
+      date: new Date("2025-08-26"),
+      displayDate: "Aug 26, 2025",
       time: "16:00 – 20:00 CEST",
       location: "Munich, Germany",
       price: "Free for the first 5 registrations, then 100$",
@@ -37,7 +39,8 @@ We will explain how MCS works, how you gather the data, how you apply it and wha
     {
       type: "Workshop",
       title: "Service Level Expectations & Right Sizing",
-      date: "Sep 5, 2025",
+      date: new Date("2025-09-05"),
+      displayDate: "Sep 5, 2025",
       time: "14:00 - 16:00 CEST",
       location: "Online, Zoom",
       price: "200$",
@@ -50,7 +53,8 @@ When work arrives unpredictably, teams struggle to promise when something will b
     {
       type: ["Talk", "Workshop"],
       title: "AgileByExample 2025",
-      date: "Oct 6 - 8, 2025",
+      date: new Date("2025-10-08"),
+      displayDate: "Oct 6 - 8, 2025",
       location: "Warsaw, Poland",
       price: "See Conference Website",
       description: `Join us at AgileByExample 2025, where we will be hosting our signature workshop "Flowbeya - How visualizing Flow Metrics on an Obeya can guide your Team" as well as presenting a brand new talk "How it's all connected: From Flow Metrics to Product KPIs".
@@ -60,6 +64,12 @@ When work arrives unpredictably, teams struggle to promise when something will b
       ctaLink: "https://agilebyexample.com/"
     }
   ];
+
+  // Filter out past events
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set to start of day for accurate comparison
+  
+  const upcomingEvents = allEvents.filter(event => event.date >= today);
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -94,8 +104,8 @@ When work arrives unpredictably, teams struggle to promise when something will b
 
         {/* Events Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {upcomingEvents.map((event, index) => (
-            <Card key={index} className="group hover:shadow-medium transition-all duration-300 border-0 shadow-soft">
+          {upcomingEvents.map((event) => (
+            <Card key={event.title} className="group hover:shadow-medium transition-all duration-300 border-0 shadow-soft">
               <CardHeader className="pb-4">
                 <div className="flex items-center mb-2 gap-2 flex-wrap">
                   {Array.isArray(event.type) ? (
@@ -126,7 +136,7 @@ When work arrives unpredictably, teams struggle to promise when something will b
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4 mr-3 text-primary" />
-                    {event.date}
+                    {event.displayDate}
                   </div>
 
                   {event.time && (
