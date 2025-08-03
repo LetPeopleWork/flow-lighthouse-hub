@@ -9,6 +9,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import Navigation from "@/components/Navigation";
 import SimpleFooter from "@/components/SimpleFooter";
 import lighthouseLogo from "@/assets/LighthouseLogo.png";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/components/ui/use-toast";
 
 const Lighthouse = () => {
   const [latestVersion, setLatestVersion] = useState<string>("");
@@ -21,6 +23,8 @@ const Lighthouse = () => {
     email: '',
     organization: ''
   });
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const { toast } = useToast();
   
   // Fetch latest version from GitHub releases
   useEffect(() => {
@@ -210,6 +214,43 @@ const Lighthouse = () => {
 
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const handlePurchase = async (licenseType: 'premium' | 'enterprise') => {
+    if (!purchaseForm.name || !purchaseForm.email) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in your name and email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsProcessingPayment(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: {
+          name: purchaseForm.name,
+          email: purchaseForm.email,
+          organization: purchaseForm.organization,
+          licenseType: licenseType,
+        },
+      });
+
+      if (error) throw error;
+
+      // Open Stripe checkout in a new tab
+      window.open(data.url, '_blank');
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Payment Error",
+        description: "Failed to create payment session. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsProcessingPayment(false);
+    }
   };
 
   return (
@@ -448,7 +489,7 @@ const Lighthouse = () => {
                   
                   <div className="mb-6">
                     <div className="text-4xl font-bold text-foreground mb-2">
-                      $999 <span className="text-lg font-normal text-muted-foreground">USD</span>
+                      $499 <span className="text-lg font-normal text-muted-foreground">USD</span>
                     </div>
                     <p className="text-muted-foreground">One-time payment • Valid for 1 year</p>
                   </div>
@@ -553,13 +594,10 @@ const Lighthouse = () => {
                   <Button 
                     size="lg" 
                     className="w-full bg-gradient-primary hover:opacity-90 transition-opacity text-white"
-                    disabled={!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization}
-                    onClick={() => {
-                      // TODO: Implement Stripe checkout with form data
-                      console.log('Purchase license clicked with data:', purchaseForm);
-                    }}
+                    disabled={!purchaseForm.name || !purchaseForm.email || isProcessingPayment}
+                    onClick={() => handlePurchase('premium')}
                   >
-                    Purchase License Now
+                    {isProcessingPayment ? 'Processing...' : 'Purchase License Now'}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   
