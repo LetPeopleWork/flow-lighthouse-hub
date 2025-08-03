@@ -62,7 +62,33 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/2fb2a57e-25b1-44b6-8d9c-e8bcfc7c8373) and click on Share -> Publish.
+### Deploy to GitHub Pages
+
+This project is configured to automatically deploy to GitHub Pages. To set it up:
+
+1. **Enable GitHub Pages in your repository:**
+   - Go to your repository settings on GitHub
+   - Navigate to "Pages" in the sidebar
+   - Under "Source", select "GitHub Actions"
+
+2. **Push your code to the main branch:**
+   ```sh
+   git add .
+   git commit -m "Setup GitHub Pages deployment"
+   git push origin main
+   ```
+
+3. **The deployment will automatically start:**
+   - The GitHub Actions workflow will build and deploy your site
+   - Your site will be available at: `https://[username].github.io/flow-lighthouse-hub/`
+
+4. **Check deployment status:**
+   - Go to the "Actions" tab in your GitHub repository
+   - You can monitor the build and deployment progress
+
+### Deploy with Lovable
+
+Alternatively, you can simply open [Lovable](https://lovable.dev/projects/2fb2a57e-25b1-44b6-8d9c-e8bcfc7c8373) and click on Share → Publish.
 
 ## Can I connect a custom domain to my Lovable project?
 
