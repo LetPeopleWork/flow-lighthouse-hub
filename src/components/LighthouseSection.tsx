@@ -140,8 +140,9 @@ const LighthouseSection = () => {
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Make your Flow transparent from team to portfolio level. Get data-driven insights instead of gut feelings. 
-            Forecast delivery dates in seconds based on your real performance and drive actionable improvements.
+            See Your Flow — Predict Your Delivery <br />
+            Lighthouse turns your data into flow metrics and date-accurate delivery forecasts <br />
+            Most teams see measurable improvements in the first month <br />
           </p>
         </div>
 
@@ -196,7 +197,7 @@ const LighthouseSection = () => {
           {/* Features */}
           <div className="order-1 lg:order-2 space-y-6">
             <h3 className="text-2xl font-bold text-foreground mb-8">
-              Highlights & Key Features
+              Highlights
             </h3>
             
             {features.map((feature) => (
@@ -220,10 +221,10 @@ const LighthouseSection = () => {
         {/* CTA Section */}
         <div className="text-center bg-gradient-subtle rounded-2xl p-12 border border-border mb-16">
           <h3 className="text-2xl font-bold text-foreground mb-4">
-            Try Lighthouse Today
+            Try the Free Lighthouse Version Today
           </h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Start with our free open-source version. Upgrade to premium features when you need enterprise capabilities.
+            No credit card. No account. No hassle.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <DropdownMenu>
@@ -280,7 +281,7 @@ const LighthouseSection = () => {
               </a>
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground mt-4">No credit card required • Base Version Free forever</p>
+          <p className="text-xs text-muted-foreground mt-4">Base Version Free forever • All Code is Open Source • Everything runs on your Infrstructure - No Third-Party Cloud Services involved</p>
         </div>
 
         {/* Testimonials Slider */}

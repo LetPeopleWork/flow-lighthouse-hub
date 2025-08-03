@@ -441,6 +441,13 @@ const Lighthouse = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <LighthouseTestimonials />
+        </div>
+      </section>
+
       {/* Why Premium Section */}
       <section className="py-20 bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -707,81 +714,6 @@ const Lighthouse = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <LighthouseTestimonials />
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-subtle">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Ready to Transform Your Flow?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-12">
-            Join thousands of teams already using Lighthouse to deliver better, faster, and with more predictability.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="hero" size="lg" className="group">
-                  <Download className="mr-2 h-4 w-4" />
-                  Get Started Now
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="w-64">
-                {platforms.map((platform) => (
-                  <DropdownMenuItem
-                    key={platform.id}
-                    onClick={platform.action}
-                    className="flex items-center space-x-3 p-3 cursor-pointer"
-                  >
-                    {platform.icon}
-                    <div className="flex-1">
-                      <div className="font-medium">{platform.name}</div>
-                      {platform.id === 'docker' ? (
-                        <div className="text-xs text-muted-foreground">
-                          {copiedCommand ? 'Copied!' : 'Copy command'}
-                        </div>
-                      ) : (
-                        <div className="text-xs text-muted-foreground">
-                          {isLoadingVersion ? 'Loading...' : `Version ${latestVersion}`}
-                        </div>
-                      )}
-                    </div>
-                    {platform.id === 'docker' && copiedCommand && (
-                      <Check className="h-4 w-4 text-green-500" />
-                    )}
-                    {platform.id === 'docker' && !copiedCommand && (
-                      <Copy className="h-4 w-4" />
-                    )}
-                  </DropdownMenuItem>
-                ))}
-                <div className="px-3 py-2 border-t">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-xs"
-                    onClick={() => window.open('https://github.com/LetPeopleWork/Lighthouse', '_blank')}
-                  >
-                    View on GitHub
-                  </Button>
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button variant="outline" size="lg" asChild>
-              <a href="https://docs.lighthouse.letpeople.work" target="_blank" rel="noopener noreferrer">
-                View Documentation
-              </a>
-            </Button>
           </div>
         </div>
       </section>

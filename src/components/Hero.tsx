@@ -33,15 +33,16 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-in">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Unlock the full potential of your organization with our{" "}
+            Unlock the Full{" "}
             <span className="bg-gradient-hero bg-clip-text text-transparent">
-              Tool and Expertise
+              Potential
             </span>
+            {" "}  of your Organization
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            We combine powerful tools like Lighthouse with deep expertise in Flow and Obeya methodologies. 
-            Get the complete package: proven tools and the know-how to use them effectively.
+            LetPeopleWork combines the powerful tooling of Lighthouse with deep expertise and experience in Flow, Delivery, and Obeya. <br />
+            We combine the know-how and the tooling, so that we can provide you the services that creates a measurable impact.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
