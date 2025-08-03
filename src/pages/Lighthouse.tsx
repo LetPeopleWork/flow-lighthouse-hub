@@ -1,4 +1,4 @@
-import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, Users, Globe, Gauge, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, User, Mail, Building, CheckCircle, XCircle } from "lucide-react";
+import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, Users, Globe, Gauge, ChevronDown, ChevronUp, User, Mail, Building, CheckCircle, XCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,12 +12,12 @@ import SimpleFooter from "@/components/SimpleFooter";
 import lighthouseLogo from "@/assets/LighthouseLogo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
+import LighthouseTestimonials from "@/components/LighthouseTestimonials";
 
 const Lighthouse = () => {
   const [latestVersion, setLatestVersion] = useState<string>("");
   const [isLoadingVersion, setIsLoadingVersion] = useState(false);
   const [copiedCommand, setCopiedCommand] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [showLicenseDetails, setShowLicenseDetails] = useState(false);
   const [purchaseForm, setPurchaseForm] = useState({
     name: '',
@@ -37,7 +37,7 @@ const Lighthouse = () => {
     description: ''
   });
   const { toast } = useToast();
-  
+
   // Fetch latest version from GitHub releases
   useEffect(() => {
     const fetchLatestVersion = async () => {
@@ -64,13 +64,13 @@ const Lighthouse = () => {
     console.log('Current URL:', window.location.href);
     console.log('Pathname:', window.location.pathname);
     console.log('Search:', window.location.search);
-    
+
     const urlParams = new URLSearchParams(window.location.search);
     const paymentStatus = urlParams.get('payment');
-    
+
     console.log('Payment status from URL:', paymentStatus);
     console.log('All URL params:', Array.from(urlParams.entries()));
-    
+
     if (paymentStatus === 'success') {
       console.log('Showing success dialog');
       // Show success dialog first
@@ -80,7 +80,7 @@ const Lighthouse = () => {
         title: 'Payment Successful!',
         description: 'You will receive your license by mail from licensing@lighthouse.letpeople.work. Check your inbox. If you don\'t receive it within the next 4h, please reach out to support@letpeople.work'
       });
-      
+
       // Clear the URL parameters after showing the dialog
       setTimeout(() => {
         console.log('Clearing URL parameters');
@@ -96,7 +96,7 @@ const Lighthouse = () => {
         title: 'Payment Canceled',
         description: 'Your payment was canceled. You can try again anytime.'
       });
-      
+
       // Clear the URL parameters after showing the dialog
       setTimeout(() => {
         console.log('Clearing URL parameters');
@@ -141,7 +141,7 @@ const Lighthouse = () => {
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        
+
         try {
           document.execCommand('copy');
           setCopiedCommand(true);
@@ -224,7 +224,7 @@ const Lighthouse = () => {
       description: "Core functionality freely available. No vendor lock-in. Full transparency and community-driven development.",
       details: [
         "Complete source code available on GitHub",
-        "Community contributions welcomed and encouraged", 
+        "Community contributions welcomed and encouraged",
         "No licensing fees for core features",
         "Self-hosted deployment options",
         "Full control over your data and infrastructure"
@@ -270,47 +270,6 @@ const Lighthouse = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      quote: "Lighthouse transformed how we understand and optimize our team's workflow. The insights are invaluable.",
-      author: "Sarah Johnson",
-      role: "Engineering Manager",
-      company: "TechCorp"
-    },
-    {
-      quote: "The real-time flow metrics helped us identify bottlenecks we never knew existed. Productivity up 40%.",
-      author: "Michael Chen",
-      role: "Product Director", 
-      company: "InnovateLab"
-    },
-    {
-      quote: "Finally, data-driven decisions instead of gut feelings. Our forecasting accuracy improved dramatically.",
-      author: "Emma Rodriguez",
-      role: "Agile Coach",
-      company: "FlowTech Solutions"
-    },
-    {
-      quote: "The Swiss quality and privacy standards give us confidence in using Lighthouse for sensitive projects.",
-      author: "Hans Mueller",
-      role: "CTO",
-      company: "SecureFlow AG"
-    },
-    {
-      quote: "Open source core with premium enterprise features - exactly what we needed for our scaling organization.",
-      author: "Lisa Wang",
-      role: "VP Engineering",
-      company: "GrowthTech"
-    }
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   const handlePurchase = async () => {
     if (!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization) {
       toast({
@@ -350,15 +309,15 @@ const Lighthouse = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center mb-8">
-              <img 
-                src={lighthouseLogo} 
-                alt="Lighthouse Logo" 
+              <img
+                src={lighthouseLogo}
+                alt="Lighthouse Logo"
                 className="h-20 w-auto"
               />
             </div>
@@ -368,10 +327,10 @@ const Lighthouse = () => {
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-12">
-              Make your Flow transparent from team to portfolio level. Get data-driven insights instead of gut feelings. 
+              Make your Flow transparent from team to portfolio level. Get data-driven insights instead of gut feelings.
               Forecast delivery dates in seconds based on your real performance and drive actionable improvements.
             </p>
-            
+
             {/* Download CTA */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <DropdownMenu>
@@ -411,9 +370,9 @@ const Lighthouse = () => {
                     </DropdownMenuItem>
                   ))}
                   <div className="px-3 py-2 border-t">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
+                    <Button
+                      variant="outline"
+                      size="sm"
                       className="w-full text-xs"
                       onClick={() => window.open('https://github.com/LetPeopleWork/Lighthouse', '_blank')}
                     >
@@ -444,14 +403,14 @@ const Lighthouse = () => {
               Explore the intuitive interface and powerful features that make flow visualization effortless.
             </p>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-foreground">
                 Real-time Flow Visualization
               </h3>
               <p className="text-muted-foreground">
-                Watch your work items flow through your process in real-time. Identify bottlenecks, track progress, 
+                Watch your work items flow through your process in real-time. Identify bottlenecks, track progress,
                 and get instant insights into your team's performance.
               </p>
               <ul className="space-y-3">
@@ -469,11 +428,11 @@ const Lighthouse = () => {
                 </li>
               </ul>
             </div>
-            
+
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-primary rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                 alt="Lighthouse Dashboard Preview"
                 className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full"
               />
@@ -490,11 +449,11 @@ const Lighthouse = () => {
               Why Choose Premium?
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
-              While our open-source version provides powerful flow metrics, Premium unlocks enterprise-grade 
+              While our open-source version provides powerful flow metrics, Premium unlocks enterprise-grade
               capabilities that scale with your organization's growth and complexity.
             </p>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-6">
@@ -518,7 +477,7 @@ const Lighthouse = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="bg-background rounded-2xl p-8 shadow-soft border border-border">
               <h4 className="text-xl font-bold text-foreground mb-6 text-center">
                 What You Get with Premium
@@ -565,7 +524,7 @@ const Lighthouse = () => {
               Purchase your Lighthouse Premium license and unlock enterprise-grade features for your organization.
             </p>
           </div>
-          
+
           <Card className="border-0 shadow-medium hover:shadow-glow transition-all duration-300">
             <CardContent className="p-12">
               <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -580,7 +539,7 @@ const Lighthouse = () => {
                   <p className="text-muted-foreground mb-6">
                     One-year premium license with enterprise features and unlimited users.
                   </p>
-                  
+
                   <div className="mb-6">
                     <div className="text-4xl font-bold text-foreground mb-2">
                       $999 <span className="text-lg font-normal text-muted-foreground">USD</span>
@@ -642,7 +601,7 @@ const Lighthouse = () => {
                   <h4 className="text-xl font-bold text-foreground mb-6">
                     License Information
                   </h4>
-                  
+
                   <div className="space-y-4 mb-8">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="flex items-center space-x-2">
@@ -653,10 +612,10 @@ const Lighthouse = () => {
                         id="name"
                         placeholder="Enter your full name"
                         value={purchaseForm.name}
-                        onChange={(e) => setPurchaseForm({...purchaseForm, name: e.target.value})}
+                        onChange={(e) => setPurchaseForm({ ...purchaseForm, name: e.target.value })}
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="email" className="flex items-center space-x-2">
                         <Mail className="h-4 w-4" />
@@ -667,10 +626,10 @@ const Lighthouse = () => {
                         type="email"
                         placeholder="Enter your email address"
                         value={purchaseForm.email}
-                        onChange={(e) => setPurchaseForm({...purchaseForm, email: e.target.value})}
+                        onChange={(e) => setPurchaseForm({ ...purchaseForm, email: e.target.value })}
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="organization" className="flex items-center space-x-2">
                         <Building className="h-4 w-4" />
@@ -680,13 +639,13 @@ const Lighthouse = () => {
                         id="organization"
                         placeholder="Enter your organization name"
                         value={purchaseForm.organization}
-                        onChange={(e) => setPurchaseForm({...purchaseForm, organization: e.target.value})}
+                        onChange={(e) => setPurchaseForm({ ...purchaseForm, organization: e.target.value })}
                       />
                     </div>
                   </div>
-                  
-                  <Button 
-                    size="lg" 
+
+                  <Button
+                    size="lg"
                     className="w-full bg-gradient-primary hover:opacity-90 transition-opacity text-white"
                     disabled={!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization || isProcessingPayment}
                     onClick={() => handlePurchase()}
@@ -694,7 +653,7 @@ const Lighthouse = () => {
                     {isProcessingPayment ? 'Processing...' : 'Purchase License Now'}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                  
+
                   <p className="text-xs text-muted-foreground text-center mt-4">
                     Secure payment via Stripe • Need a trial? Email us at sales@letpeople.work
                   </p>
@@ -716,7 +675,7 @@ const Lighthouse = () => {
               Explore what makes Lighthouse the leading choice for flow-based project management.
             </p>
           </div>
-          
+
           <div className="space-y-16">
             {detailedFeatures.map((feature, index) => (
               <div key={feature.title} className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
@@ -731,7 +690,7 @@ const Lighthouse = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
                   <Card className="border-0 shadow-soft">
                     <CardContent className="p-8">
@@ -755,57 +714,7 @@ const Lighthouse = () => {
       {/* Testimonials Section */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Trusted by Flow Leaders Worldwide
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              See how teams across the globe are transforming their delivery with Lighthouse.
-            </p>
-          </div>
-          
-          <div className="relative max-w-4xl mx-auto">
-            <Card className="border-0 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-12">
-                <blockquote className="text-xl text-muted-foreground mb-8 italic text-center">
-                  "{testimonials[currentTestimonial].quote}"
-                </blockquote>
-                <div className="text-center">
-                  <div className="font-semibold text-foreground text-lg">{testimonials[currentTestimonial].author}</div>
-                  <div className="text-muted-foreground">
-                    {testimonials[currentTestimonial].role} at {testimonials[currentTestimonial].company}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            {/* Testimonial navigation */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-3 hover:bg-background transition-colors shadow-soft"
-            >
-              <ChevronLeft className="h-6 w-6 text-primary" />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-3 hover:bg-background transition-colors shadow-soft"
-            >
-              <ChevronRight className="h-6 w-6 text-primary" />
-            </button>
-            
-            {/* Dots indicator */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((testimonial, testimonialIndex) => (
-                <button
-                  key={`dot-${testimonial.author}`}
-                  onClick={() => setCurrentTestimonial(testimonialIndex)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    testimonialIndex === currentTestimonial ? 'bg-primary' : 'bg-muted-foreground/30'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
+          <LighthouseTestimonials />
         </div>
       </section>
 
@@ -818,7 +727,7 @@ const Lighthouse = () => {
           <p className="text-xl text-muted-foreground mb-12">
             Join thousands of teams already using Lighthouse to deliver better, faster, and with more predictability.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -857,9 +766,9 @@ const Lighthouse = () => {
                   </DropdownMenuItem>
                 ))}
                 <div className="px-3 py-2 border-t">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <Button
+                    variant="outline"
+                    size="sm"
                     className="w-full text-xs"
                     onClick={() => window.open('https://github.com/LetPeopleWork/Lighthouse', '_blank')}
                   >
@@ -880,7 +789,7 @@ const Lighthouse = () => {
       <SimpleFooter />
 
       {/* Payment Result Dialog */}
-      <Dialog open={paymentResult.show} onOpenChange={(open) => !open && setPaymentResult({...paymentResult, show: false})}>
+      <Dialog open={paymentResult.show} onOpenChange={(open) => !open && setPaymentResult({ ...paymentResult, show: false })}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader className="text-center">
             <div className="flex justify-center mb-4">
@@ -902,12 +811,12 @@ const Lighthouse = () => {
             <p className="text-muted-foreground leading-relaxed">
               {paymentResult.description}
             </p>
-            <Button 
-              onClick={() => setPaymentResult({...paymentResult, show: false})}
-              className={`w-full ${paymentResult.type === 'success' 
-                ? 'bg-green-600 hover:bg-green-700 text-white' 
+            <Button
+              onClick={() => setPaymentResult({ ...paymentResult, show: false })}
+              className={`w-full ${paymentResult.type === 'success'
+                ? 'bg-green-600 hover:bg-green-700 text-white'
                 : 'bg-red-600 hover:bg-red-700 text-white'
-              }`}
+                }`}
             >
               {paymentResult.type === 'success' ? 'Got it!' : 'Understood'}
             </Button>

@@ -1,4 +1,3 @@
-import { Mail, Linkedin, Twitter, Github } from "lucide-react";
 
 const Footer = () => {
   const footerLinks = {
@@ -21,14 +20,6 @@ const Footer = () => {
       { name: "Contact", href: "#" }
     ]
   };
-
-  const socialLinks = [
-    { icon: <Linkedin className="h-5 w-5" />, href: "#", label: "LinkedIn" },
-    { icon: <Twitter className="h-5 w-5" />, href: "#", label: "Twitter" },
-    { icon: <Github className="h-5 w-5" />, href: "#", label: "GitHub" },
-    { icon: <Mail className="h-5 w-5" />, href: "#", label: "Email" }
-  ];
-
   return (
     <footer className="bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -43,20 +34,6 @@ const Footer = () => {
               Flow and Obeya methodologies. Transform your productivity with proven 
               strategies and innovative solutions.
             </p>
-            
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Product Links */}

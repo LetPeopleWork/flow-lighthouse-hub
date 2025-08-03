@@ -1,10 +1,10 @@
 import { ArrowRight, BarChart3, Target, TrendingUp, FileText, PlayCircle, ChevronLeft, ChevronRight, Download, Monitor, Smartphone, Container, Copy, Check } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import lighthouseDashboard from "@/assets/lighthouse-dashboard.jpg";
 import lighthouseLogo from "@/assets/LighthouseLogo.png";
+import LighthouseTestimonials from "@/components/LighthouseTestimonials";
 
 const LighthouseSection = () => {
   const [currentMedia, setCurrentMedia] = useState(0);
@@ -120,37 +120,6 @@ const LighthouseSection = () => {
       description: "Developed in Switzerland with precision, quality, and data privacy as core principles."
     }
   ];
-
-  const testimonials = [
-    {
-      quote: "Lighthouse transformed how we understand and optimize our team's workflow. The insights are invaluable.",
-      author: "Sarah Johnson",
-      role: "Engineering Manager",
-      company: "TechCorp"
-    },
-    {
-      quote: "The real-time flow metrics helped us identify bottlenecks we never knew existed. Productivity up 40%.",
-      author: "Michael Chen",
-      role: "Product Director", 
-      company: "InnovateLab"
-    },
-    {
-      quote: "Finally, data-driven decisions instead of gut feelings. Our forecasting accuracy improved dramatically.",
-      author: "Emma Rodriguez",
-      role: "Agile Coach",
-      company: "FlowTech Solutions"
-    }
-  ];
-
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
     <section id="lighthouse" className="py-20 bg-background">
@@ -315,54 +284,7 @@ const LighthouseSection = () => {
         </div>
 
         {/* Testimonials Slider */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-center text-foreground mb-12">
-            Trusted by Flow Leaders
-          </h3>
-          
-          <div className="relative max-w-4xl mx-auto">
-            <Card className="border-0 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-8">
-                <blockquote className="text-lg text-muted-foreground mb-6 italic text-center">
-                  "{testimonials[currentTestimonial].quote}"
-                </blockquote>
-                <div className="text-center">
-                  <div className="font-semibold text-foreground">{testimonials[currentTestimonial].author}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {testimonials[currentTestimonial].role} at {testimonials[currentTestimonial].company}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            {/* Testimonial navigation */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 hover:bg-background transition-colors"
-            >
-              <ChevronLeft className="h-5 w-5 text-primary" />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 hover:bg-background transition-colors"
-            >
-              <ChevronRight className="h-5 w-5 text-primary" />
-            </button>
-            
-            {/* Dots indicator */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {testimonials.map((testimonial, testimonialIndex) => (
-                <button
-                  key={`dot-${testimonial.author}`}
-                  onClick={() => setCurrentTestimonial(testimonialIndex)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    testimonialIndex === currentTestimonial ? 'bg-primary' : 'bg-muted-foreground/30'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <LighthouseTestimonials />
       </div>
     </section>
   );
