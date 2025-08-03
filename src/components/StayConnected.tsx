@@ -9,14 +9,14 @@ const StayConnected = () => {
       title: "Slack Community",
       description: "Join our vibrant community for discussions, questions, and direct access to our experts and other practitioners.",
       cta: "Join Slack",
-      link: "#"
+      link: "https://join.slack.com/t/let-people-work/shared_invite/zt-38df4z4sy-iqJEo6S8kmIgIfsgsV0J1A"
     },
     {
       icon: <Linkedin className="h-8 w-8" />,
       title: "LinkedIn",
       description: "Follow us for industry insights, case studies, and updates on Flow and Obeya methodologies.",
       cta: "Follow on LinkedIn",
-      link: "#"
+      link: "https://www.linkedin.com/company/let-people-work/"
     },
     {
       icon: <BookOpen className="h-8 w-8" />,
@@ -58,7 +58,7 @@ const StayConnected = () => {
               
               <CardContent className="flex-grow flex flex-col justify-end">
                 <Button variant="outline" className="w-full group" asChild>
-                  <a href={connection.link}>
+                  <a href={connection.link} target="_blank" rel="noopener noreferrer">
                     {connection.cta}
                   </a>
                 </Button>
