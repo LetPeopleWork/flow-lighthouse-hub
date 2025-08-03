@@ -311,7 +311,7 @@ const Lighthouse = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  const handlePurchase = async (licenseType: 'premium' | 'enterprise') => {
+  const handlePurchase = async () => {
     if (!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization) {
       toast({
         title: "Missing Information",
@@ -329,7 +329,6 @@ const Lighthouse = () => {
           name: purchaseForm.name,
           email: purchaseForm.email,
           organization: purchaseForm.organization,
-          licenseType: licenseType,
         },
       });
 
@@ -690,7 +689,7 @@ const Lighthouse = () => {
                     size="lg" 
                     className="w-full bg-gradient-primary hover:opacity-90 transition-opacity text-white"
                     disabled={!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization || isProcessingPayment}
-                    onClick={() => handlePurchase('premium')}
+                    onClick={() => handlePurchase()}
                   >
                     {isProcessingPayment ? 'Processing...' : 'Purchase License Now'}
                     <ArrowRight className="ml-2 h-4 w-4" />
