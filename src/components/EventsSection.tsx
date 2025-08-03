@@ -181,14 +181,15 @@ When work arrives unpredictably, teams struggle to promise when something will b
           </div>
           
           <h3 className="text-3xl font-bold text-foreground mb-6">
-            Need Something{" "}
+            Need Something Tailored to{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Tailored?
+              Your Needs?
             </span>
           </h3>
           
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            We believe in the power of collaboration. All our trainings, workshops, and consulting services are delivered by our expert pairs to ensure you get the best insights and diverse perspectives.
+            We believe in the power of collaboration. This is why all our trainings, workshops, and consulting services are designed together with you to match your needs.
+            Furthermore, we always deliver them in pairs, so you get the best insights and diverse perspectives.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
@@ -216,7 +217,7 @@ When work arrives unpredictably, teams struggle to promise when something will b
           <Button variant="hero" size="lg" asChild>
             <a href="mailto:contact@letpeople.work">
               <MessageCircle className="mr-2 h-5 w-5" />
-              Let's Talk
+              Reach Out To Talk About How We Can Support
             </a>
           </Button>
         </div>
