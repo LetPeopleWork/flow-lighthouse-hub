@@ -1,4 +1,4 @@
-import { GraduationCap, Users, MessageSquare, ArrowRight, Mail, Wrench } from "lucide-react";
+import { GraduationCap, Users, MessageSquare, ArrowRight, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 
@@ -9,21 +9,27 @@ const ServicesSection = () => {
       title: "Tool Support",
       description: "We help you customize Lighthouse to fit your specific organizational needs, ensuring you get the most value from your data.",
       audience: "If you need technical assistance",
-      connection: "Don't see the numbers?"
+      connection: "Don't see the numbers?",
+      ctaDescription: "Need a Hand with the Setup?",
+      ctaLink: "mailto:support@letpeople.work"
     },
     {
       icon: <GraduationCap className="h-8 w-8" />,
       title: "Training",
-      description: "Through custom trainings and workshops, we help your team understand and effectively use flow metrics to drive improvements.",
+      description: "Through custom trainings and workshops, we help your team understand and effectively use flow metrics to drive improvements and get more accurate delivery forecasts.",
       audience: "If you want to become more data-driven",
-      connection: "Don't understand the numbers?"
+      connection: "Don't understand the numbers?",
+      ctaDescription: "Book a Workshop or Training",
+      ctaLink: "#events"
     },
     {
       icon: <MessageSquare className="h-8 w-8" />,
       title: "Consulting",
       description: "Our expert guidance helps you interpret your metrics and develop actionable strategies to achieve better flow and organizational performance.",
       audience: "If you want continuous guidance",
-      connection: "Don't like the numbers?"
+      connection: "Don't like the numbers?",
+      ctaDescription: "Talk To Us",
+      ctaLink: "#custom-events"
     }
   ];
 
@@ -62,32 +68,24 @@ const ServicesSection = () => {
               </CardHeader>
               
               <CardContent className="flex flex-col justify-end flex-grow h-20">
-                <div className="border-t border-border pt-4 flex items-center">
+                <div className="border-t border-border pt-4 flex items-center mb-4">
                   <Users className="h-4 w-4 text-muted-foreground mr-2 flex-shrink-0" />
                   <p className="text-sm text-muted-foreground">
                     {service.audience}
                   </p>
                 </div>
+                
+                <Button variant="default" className="w-full group" asChild>
+                  <a href={service.ctaLink}>
+                    {service.ctaDescription}
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </Button>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Get Started CTA */}
-        <div className="text-center bg-gradient-subtle rounded-2xl p-12 border border-border">
-          <h3 className="text-2xl font-bold text-foreground mb-6">
-            Ready to Get Started?
-          </h3>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Contact us to discuss how we can help
-          </p>
-          <Button variant="hero" size="lg" className="group" asChild>
-            <a href="mailto:contact@letpeople.work">
-              <Mail className="mr-2 h-5 w-5" />
-              Contact Us
-            </a>
-          </Button>
-        </div>
       </div>
     </section>
   );

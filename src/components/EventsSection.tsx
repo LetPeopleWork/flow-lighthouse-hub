@@ -173,7 +173,7 @@ When work arrives unpredictably, teams struggle to promise when something will b
         </div>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-subtle rounded-2xl p-12 border border-border">
+        <div id="custom-events" className="text-center bg-gradient-subtle rounded-2xl p-12 border border-border">
           <div className="flex justify-center mb-6">
             <div className="bg-primary/10 rounded-full p-4">
               <MessageCircle className="h-8 w-8 text-primary" />
