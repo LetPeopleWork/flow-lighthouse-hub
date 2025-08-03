@@ -27,8 +27,8 @@ serve(async (req) => {
 
     // Define pricing based on license type
     const prices = {
-      premium: 49900, // $499 in cents
-      enterprise: 99900, // $999 in cents
+      premium: 99900, // $999 in cents
+      enterprise: 199900, // $1999 in cents
     };
 
     const productNames = {

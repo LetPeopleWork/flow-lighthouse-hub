@@ -489,7 +489,7 @@ const Lighthouse = () => {
                   
                   <div className="mb-6">
                     <div className="text-4xl font-bold text-foreground mb-2">
-                      $499 <span className="text-lg font-normal text-muted-foreground">USD</span>
+                      $999 <span className="text-lg font-normal text-muted-foreground">USD</span>
                     </div>
                     <p className="text-muted-foreground">One-time payment • Valid for 1 year</p>
                   </div>
