@@ -1,11 +1,12 @@
-import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, Users, Globe, Gauge, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, User, Mail, Building } from "lucide-react";
+import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, Users, Globe, Gauge, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, User, Mail, Building, CheckCircle, XCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import Navigation from "@/components/Navigation";
 import SimpleFooter from "@/components/SimpleFooter";
 import lighthouseLogo from "@/assets/LighthouseLogo.png";
@@ -24,6 +25,17 @@ const Lighthouse = () => {
     organization: ''
   });
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paymentResult, setPaymentResult] = useState<{
+    show: boolean;
+    type: 'success' | 'canceled';
+    title: string;
+    description: string;
+  }>({
+    show: false,
+    type: 'success',
+    title: '',
+    description: ''
+  });
   const { toast } = useToast();
   
   // Fetch latest version from GitHub releases
@@ -44,6 +56,38 @@ const Lighthouse = () => {
     };
 
     fetchLatestVersion();
+  }, []);
+
+  // Check for Stripe payment result and show appropriate dialog
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentStatus = urlParams.get('payment');
+    
+    if (paymentStatus === 'success') {
+      // Clear the URL parameters
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+      
+      // Show success dialog
+      setPaymentResult({
+        show: true,
+        type: 'success',
+        title: 'Payment Successful!',
+        description: 'You will receive your license by mail from licensing@lighthouse.letpeople.work. Check your inbox. If you don\'t receive it within the next 4h, please reach out to support@letpeople.work'
+      });
+    } else if (paymentStatus === 'canceled') {
+      // Clear the URL parameters
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+      
+      // Show canceled dialog
+      setPaymentResult({
+        show: true,
+        type: 'canceled',
+        title: 'Payment Canceled',
+        description: 'Your payment was canceled. You can try again anytime.'
+      });
+    }
   }, []);
 
   const getPlatformDownloadUrl = (platform: string) => {
@@ -217,16 +261,17 @@ const Lighthouse = () => {
   };
 
   const handlePurchase = async (licenseType: 'premium' | 'enterprise') => {
-    if (!purchaseForm.name || !purchaseForm.email) {
+    if (!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization) {
       toast({
         title: "Missing Information",
-        description: "Please fill in your name and email address.",
+        description: "Please fill in your name, email address, and organization.",
         variant: "destructive",
       });
       return;
     }
 
     setIsProcessingPayment(true);
+
     try {
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: {
@@ -239,8 +284,8 @@ const Lighthouse = () => {
 
       if (error) throw error;
 
-      // Open Stripe checkout in a new tab
-      window.open(data.url, '_blank');
+      // Redirect to Stripe checkout in the same tab
+      window.location.href = data.url;
     } catch (error) {
       console.error('Payment error:', error);
       toast({
@@ -248,7 +293,6 @@ const Lighthouse = () => {
         description: "Failed to create payment session. Please try again.",
         variant: "destructive",
       });
-    } finally {
       setIsProcessingPayment(false);
     }
   };
@@ -594,7 +638,7 @@ const Lighthouse = () => {
                   <Button 
                     size="lg" 
                     className="w-full bg-gradient-primary hover:opacity-90 transition-opacity text-white"
-                    disabled={!purchaseForm.name || !purchaseForm.email || isProcessingPayment}
+                    disabled={!purchaseForm.name || !purchaseForm.email || !purchaseForm.organization || isProcessingPayment}
                     onClick={() => handlePurchase('premium')}
                   >
                     {isProcessingPayment ? 'Processing...' : 'Purchase License Now'}
@@ -784,6 +828,42 @@ const Lighthouse = () => {
       </section>
 
       <SimpleFooter />
+
+      {/* Payment Result Dialog */}
+      <Dialog open={paymentResult.show} onOpenChange={(open) => !open && setPaymentResult({...paymentResult, show: false})}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader className="text-center">
+            <div className="flex justify-center mb-4">
+              {paymentResult.type === 'success' ? (
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                  <CheckCircle className="h-8 w-8 text-green-600" />
+                </div>
+              ) : (
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                  <XCircle className="h-8 w-8 text-red-600" />
+                </div>
+              )}
+            </div>
+            <DialogTitle className={`text-xl font-bold ${paymentResult.type === 'success' ? 'text-green-700' : 'text-red-700'}`}>
+              {paymentResult.title}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="text-center space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              {paymentResult.description}
+            </p>
+            <Button 
+              onClick={() => setPaymentResult({...paymentResult, show: false})}
+              className={`w-full ${paymentResult.type === 'success' 
+                ? 'bg-green-600 hover:bg-green-700 text-white' 
+                : 'bg-red-600 hover:bg-red-700 text-white'
+              }`}
+            >
+              {paymentResult.type === 'success' ? 'Got it!' : 'Understood'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
