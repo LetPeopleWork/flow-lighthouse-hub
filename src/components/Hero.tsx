@@ -1,8 +1,22 @@
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import heroFlow from "@/assets/hero-flow.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleExploreLighthouse = () => {
+    navigate("/lighthouse");
+  };
+
+  const handleOurServices = () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-subtle overflow-hidden">
       {/* Background Image */}
@@ -31,12 +45,12 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button variant="hero" size="lg" className="group">
+            <Button variant="hero" size="lg" className="group" onClick={handleExploreLighthouse}>
               Explore Lighthouse
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             
-            <Button variant="outline" size="lg" className="group">
+            <Button variant="outline" size="lg" className="group" onClick={handleOurServices}>
               <Play className="mr-2 group-hover:scale-110 transition-transform" />
               Our Services
             </Button>

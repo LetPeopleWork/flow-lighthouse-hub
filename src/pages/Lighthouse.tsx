@@ -108,11 +108,44 @@ const Lighthouse = () => {
 
   const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(text);
-      setCopiedCommand(true);
-      setTimeout(() => setCopiedCommand(false), 2000);
+      // Check if clipboard API is available (requires HTTPS)
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        setCopiedCommand(true);
+        setTimeout(() => setCopiedCommand(false), 2000);
+      } else {
+        // Fallback for HTTP sites
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          setCopiedCommand(true);
+          setTimeout(() => setCopiedCommand(false), 2000);
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+          toast({
+            title: "Copy failed",
+            description: "Please copy the command manually",
+            variant: "destructive",
+          });
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
     } catch (error) {
       console.error('Failed to copy to clipboard:', error);
+      toast({
+        title: "Copy failed",
+        description: "Please copy the command manually",
+        variant: "destructive",
+      });
     }
   };
 

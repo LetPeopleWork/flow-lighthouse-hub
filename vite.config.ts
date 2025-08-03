@@ -17,4 +17,15 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+  // This ensures that all routes are handled by the SPA
+  preview: {
+    port: 8080,
+  },
 }));
