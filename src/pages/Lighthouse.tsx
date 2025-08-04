@@ -19,7 +19,7 @@ import LighthouseTestimonials from "@/components/LighthouseTestimonials";
 import metricsTeam1 from "@/assets/screenshots/Metrics_Team_1.png";
 import metricsTeam2 from "@/assets/screenshots/Metrics_Team_2.png";
 import metricsProject1 from "@/assets/screenshots/Metrics_Project_1.png";
-import metricsProject2 from "@/assets/screenshots/Metrics_Project_1.png";
+import metricsProject2 from "@/assets/screenshots/Metrics_Project_2.png";
 import forecastsTeamManual from "@/assets/screenshots/Forecasts_Team_Manual.png";
 import forecastsTeamEpic from "@/assets/screenshots/Forecasts_Team_Epics.png";
 import forecastsProject from "@/assets/screenshots/Forecasts_Project.png";
@@ -219,7 +219,7 @@ const Lighthouse = () => {
         metricsTeam1,
         metricsTeam2
       ],
-      video: "/src/assets/videos/Metrics_Team.mp4"
+      video: metricsTeamVideo
     },
     {
       title: "Visualize the Flow on Portfolio Level",
