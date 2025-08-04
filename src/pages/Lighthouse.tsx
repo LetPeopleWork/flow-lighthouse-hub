@@ -17,11 +17,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
 import LighthouseTestimonials from "@/components/LighthouseTestimonials";
 import metricsTeam1 from "@/assets/screenshots/Metrics_Team_1.png";
-import metricsTeam2 from "@/assets/screenshots/Metrics_Team_2.png";
 import metricsProject1 from "@/assets/screenshots/Metrics_Project_1.png";
-import metricsProject2 from "@/assets/screenshots/Metrics_Project_2.png";
 import forecastsTeamManual from "@/assets/screenshots/Forecasts_Team_Manual.png";
-import forecastsTeamEpic from "@/assets/screenshots/Forecasts_Team_Epics.png";
 import forecastsProject from "@/assets/screenshots/Forecasts_Project.png";
 import metricsTeamVideo from "@/assets/videos/Metrics_Team.mp4";
 import metricsProjectVideo from "@/assets/videos/Metrics_Projects.mp4";
@@ -215,36 +212,21 @@ const Lighthouse = () => {
     {
       title: "Visualize the Flow for Teams",
       description: "Inspect how well work flows through your system and use the data to drive improvements",
-      images: [
-        metricsTeam1,
-        metricsTeam2
-      ],
       video: metricsTeamVideo
     },
     {
       title: "Visualize the Flow on Portfolio Level",
       description: "Optimize your end to end value delivery by analyzing higher flight levels",
-      images: [
-        metricsProject1,
-        metricsProject2
-      ],
       video: metricsProjectVideo
     },
     {
       title: "Run Forecasts for your Team",
       description: "Make plannings a breeze and get answers to \"When will it be done\" and \"How much can we do\" within seconds",
-      images: [
-        forecastsTeamManual,
-        forecastsTeamEpic
-      ],
       video: forecastsTeamVideo
     },
     {
       title: "Create Realistic Delivery Timelines",
       description: "Use the power of Monte Carlo Simulations to create timelines that are based on your historical data",
-      images: [
-        forecastsProject
-      ],
       video: forecastsProjectVideo
     }
   ];
@@ -477,56 +459,35 @@ const Lighthouse = () => {
 
           <Carousel className="w-full max-w-6xl mx-auto">
             <CarouselContent>
-              {lighthouseFeatures.map((feature) => {
-                // Create media array with both images and video
-                const mediaItems = [
-                  ...feature.images.map(img => ({ type: 'image', src: img })),
-                  ...(feature.video ? [{ type: 'video', src: feature.video }] : [])
-                ];
-
-                return (
-                  <CarouselItem key={feature.title}>
-                    <div className="grid lg:grid-cols-2 gap-12 p-6 min-h-[400px]">
-                      <div className="flex flex-col justify-center space-y-6">
-                        <h3 className="text-2xl font-bold text-foreground">
-                          {feature.title}
-                        </h3>
-                        <p className="text-muted-foreground text-lg">
-                          {feature.description}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col justify-center items-center space-y-4">
-                        {/* Media Carousel */}
-                        <MediaCarousel
-                          mediaItems={mediaItems.map(media => ({
-                            type: media.type as 'image' | 'video',
-                            src: media.src,
-                            alt: media.type === 'image'
-                              ? `${feature.title} screenshot ${mediaItems.indexOf(media) + 1}`
-                              : `${feature.title} demo video`
-                          }))}
-                          className="w-full max-w-lg h-80"
-                          enableModal={true}
-                          posterImage={feature.images[0]}
-                        />
-
-                        {/* Media indicators */}
-                        {mediaItems.length > 1 && (
-                          <div className="flex justify-center space-x-2">
-                            {mediaItems.map((media, index) => (
-                              <div
-                                key={`${feature.title}-indicator-${index}`}
-                                className="w-2 h-2 rounded-full bg-muted-foreground/30"
-                              />
-                            ))}
-                          </div>
-                        )}
-                      </div>
+              {lighthouseFeatures.map((feature) => (
+                <CarouselItem key={feature.title}>
+                  <div className="grid lg:grid-cols-2 gap-12 p-6 min-h-[400px]">
+                    <div className="flex flex-col justify-center space-y-6">
+                      <h3 className="text-2xl font-bold text-foreground">
+                        {feature.title}
+                      </h3>
+                      <p className="text-muted-foreground text-lg">
+                        {feature.description}
+                      </p>
                     </div>
-                  </CarouselItem>
-                );
-              })}
+
+                    <div className="flex flex-col justify-center items-center">
+                      {/* Single Video Display */}
+                      {feature.video && (
+                        <video
+                          className="w-full max-w-lg h-80 rounded-lg shadow-soft"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src={feature.video} type="video/mp4" />
+                          <track kind="captions" srcLang="en" label="English" />
+                          Your browser does not support the video tag.
+                        </video>
+                      )}
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
