@@ -1,99 +1,68 @@
-# Welcome to your Lovable project
+# LetPeopleWork GmbH Website
 
-## Project info
+The official website for LetPeopleWork GmbH, hosted at [https://letpeople.work](https://letpeople.work).
 
-**URL**: https://lovable.dev/projects/2fb2a57e-25b1-44b6-8d9c-e8bcfc7c8373
+## About
 
-## How can I edit this code?
+LetPeopleWork GmbH is a consultancy focused on helping organizations improve their software delivery and team effectiveness.
 
-There are several ways of editing your application.
+## Technology Stack
 
-**Use Lovable**
+This website is built with modern web technologies:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2fb2a57e-25b1-44b6-8d9c-e8bcfc7c8373) and start prompting.
+- **React** - Frontend framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Build tool and development server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Modern component library
 
-Changes made via Lovable will be committed automatically to this repo.
+## Development
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (recommended: install via [nvm](https://github.com/nvm-sh/nvm))
+- npm or yarn package manager
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Getting Started
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-### Deploy to GitHub Pages
-
-This project is configured to automatically deploy to GitHub Pages. To set it up:
-
-1. **Enable GitHub Pages in your repository:**
-   - Go to your repository settings on GitHub
-   - Navigate to "Pages" in the sidebar
-   - Under "Source", select "GitHub Actions"
-
-2. **Push your code to the main branch:**
-   ```sh
-   git add .
-   git commit -m "Setup GitHub Pages deployment"
-   git push origin main
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/LetPeopleWork/website.git
+   cd website
    ```
 
-3. **The deployment will automatically start:**
-   - The GitHub Actions workflow will build and deploy your site
-   - Your site will be available at: `https://[username].github.io/flow-lighthouse-hub/`
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-4. **Check deployment status:**
-   - Go to the "Actions" tab in your GitHub repository
-   - You can monitor the build and deployment progress
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-### Deploy with Lovable
+4. Open your browser to `http://localhost:5173` to view the site.
 
-Alternatively, you can simply open [Lovable](https://lovable.dev/projects/2fb2a57e-25b1-44b6-8d9c-e8bcfc7c8373) and click on Share → Publish.
+### Building for Production
 
-## Can I connect a custom domain to my Lovable project?
+```bash
+npm run build
+```
 
-Yes, you can!
+The built files will be in the `dist` directory.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Deployment
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This website is automatically deployed to GitHub Pages when changes are pushed to the `main` branch. The site is available at [https://letpeople.work](https://letpeople.work).
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally
+5. Submit a pull request
+
+## License
+
+© 2025 LetPeopleWork GmbH. All rights reserved.
