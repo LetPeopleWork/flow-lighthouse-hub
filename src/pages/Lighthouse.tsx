@@ -588,6 +588,15 @@ const Lighthouse = () => {
                     </td>
                   </tr>
                   <tr>
+                    <td className="py-3 px-4 text-muted-foreground">100% Open Source (MIT License)</td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                  <tr>
                     <td className="py-3 px-4 text-muted-foreground">Connection to Jira and Azure DevOps</td>
                     <td className="py-3 px-4 text-center">
                       <Check className="h-5 w-5 text-green-600 mx-auto" />
@@ -606,12 +615,13 @@ const Lighthouse = () => {
                   <tr>
                     <td className="py-3 px-4 text-muted-foreground">Number of Teams</td>
                     <td className="py-3 px-4 text-center text-muted-foreground">Max 3</td>
-                    <td className="py-3 px-4 text-center text-foreground font-semibold">Unlimited</td>
+                    <td className="py-3 px-4 text-center text-foreground font-semibold bg-gradient-primary bg-clip-text text-transparent">Unlimited</td>
+                    
                   </tr>
                   <tr>
                     <td className="py-3 px-4 text-muted-foreground">Number of Projects</td>
                     <td className="py-3 px-4 text-center text-muted-foreground">Max 1</td>
-                    <td className="py-3 px-4 text-center text-foreground font-semibold">Unlimited</td>
+                    <td className="py-3 px-4 text-center text-foreground font-semibold bg-gradient-primary bg-clip-text text-transparent">Unlimited</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 text-muted-foreground">Import Configuration from Another Instance</td>
