@@ -790,7 +790,7 @@ const Lighthouse = () => {
                         <h4 className="font-semibold text-foreground mb-2">Key License Terms:</h4>
                         <ul className="space-y-1">
                           <li>• License valid for 365 days from purchase date</li>
-                          <li>• Maximum 50 concurrent Lighthouse instances per organization</li>
+                          <li>• Maximum 50 concurrent Lighthouse instances per organization and license</li>
                           <li>• Non-transferable, non-sublicensable license</li>
                           <li>• Commercial use permitted within licensed organization only</li>
                           <li>• License termination for violations or misuse</li>
