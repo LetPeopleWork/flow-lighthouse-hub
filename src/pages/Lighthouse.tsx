@@ -17,10 +17,15 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
 import LighthouseTestimonials from "@/components/LighthouseTestimonials";
 import metricsTeam1 from "@/assets/screenshots/Metrics_Team_1.png";
+import metricsTeam2 from "@/assets/screenshots/Metrics_Team_2.png";
 import metricsProject1 from "@/assets/screenshots/Metrics_Project_1.png";
+import metricsProject2 from "@/assets/screenshots/Metrics_Project_1.png";
 import forecastsTeamManual from "@/assets/screenshots/Forecasts_Team_Manual.png";
+import forecastsTeamEpic from "@/assets/screenshots/Forecasts_Team_Epics.png";
 import forecastsProject from "@/assets/screenshots/Forecasts_Project.png";
 import metricsTeamVideo from "@/assets/videos/Metrics_Team.mp4";
+import metricsProjectVideo from "@/assets/videos/Metrics_Projects.mp4";
+import forecastsTeamVideo from "@/assets/videos/Forecasts_Team.mp4";
 import forecastsProjectVideo from "@/assets/videos/Forecasts_Project.mp4";
 import almConnectionImage from "@/assets/screenshots/ALM_Connection.png";
 import queryConfigurationImage from "@/assets/screenshots/Query_Configuration.png";
@@ -211,8 +216,8 @@ const Lighthouse = () => {
       title: "Visualize the Flow for Teams",
       description: "Inspect how well work flows through your system and use the data to drive improvements",
       images: [
-        "/src/assets/screenshots/Metrics_Team_1.png",
-        "/src/assets/screenshots/Metrics_Team_2.png"
+        metricsTeam1,
+        metricsTeam2
       ],
       video: "/src/assets/videos/Metrics_Team.mp4"
     },
@@ -220,27 +225,27 @@ const Lighthouse = () => {
       title: "Visualize the Flow on Portfolio Level",
       description: "Optimize your end to end value delivery by analyzing higher flight levels",
       images: [
-        "/src/assets/screenshots/Metrics_Project_1.png",
-        "/src/assets/screenshots/Metrics_Project_2.png"
+        metricsProject1,
+        metricsProject2
       ],
-      video: "/src/assets/videos/Metrics_Projects.mp4"
+      video: metricsProjectVideo
     },
     {
       title: "Run Forecasts for your Team",
       description: "Make plannings a breeze and get answers to \"When will it be done\" and \"How much can we do\" within seconds",
       images: [
-        "/src/assets/screenshots/Forecasts_Team_Manual.png",
-        "/src/assets/screenshots/Forecasts_Team_Epics.png"
+        forecastsTeamManual,
+        forecastsTeamEpic
       ],
-      video: "/src/assets/videos/Forecasts_Team.mp4"
+      video: forecastsTeamVideo
     },
     {
       title: "Create Realistic Delivery Timelines",
       description: "Use the power of Monte Carlo Simulations to create timelines that are based on your historical data",
       images: [
-        "/src/assets/screenshots/Forecasts_Project.png"
+        forecastsProject
       ],
-      video: "/src/assets/videos/Forecasts_Project.mp4"
+      video: forecastsProjectVideo
     }
   ];
 
