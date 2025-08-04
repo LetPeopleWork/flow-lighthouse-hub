@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useLocation } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/LPW_Banner_White.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,8 +11,8 @@ const Navigation = () => {
     { name: "Home", href: "#home", isHash: true },
     { name: "Lighthouse", href: location.pathname === "/lighthouse" ? "#lighthouse" : "/lighthouse", isHash: false },
     { name: "Services", href: "#services", isHash: true },
-    { name: "Events", href: "#events", isHash: true },
-    { name: "Stay Connected", href: "#stay-connected", isHash: true },
+    { name: "Trainings & Workshops", href: "#events", isHash: true },
+    { name: "Connect", href: "#stay-connected", isHash: true },
   ];
 
   const handleNavClick = (item: typeof navItems[0]) => {

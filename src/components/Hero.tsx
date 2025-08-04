@@ -1,13 +1,13 @@
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 import heroFlow from "@/assets/hero-flow.jpg";
 
 const Hero = () => {
-  const navigate = useNavigate();
-
   const handleExploreLighthouse = () => {
-    navigate("/lighthouse");
+    const lighthouseSection = document.getElementById("lighthouse");
+    if (lighthouseSection) {
+      lighthouseSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleOurServices = () => {
