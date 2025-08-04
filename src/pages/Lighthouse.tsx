@@ -12,6 +12,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import Navigation from "@/components/Navigation";
 import SimpleFooter from "@/components/SimpleFooter";
 import MediaCarousel from "@/components/MediaCarousel";
+import LegalInfoDialog from "@/components/LegalInfoDialog";
 import lighthouseLogo from "@/assets/LighthouseLogo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
@@ -50,6 +51,7 @@ const Lighthouse = () => {
     title: '',
     description: ''
   });
+  const [showLegalDialog, setShowLegalDialog] = useState(false);
   const { toast } = useToast();
 
   // Fetch latest version from GitHub releases
@@ -758,17 +760,17 @@ const Lighthouse = () => {
                   <h3 className="text-2xl font-bold text-foreground mb-4">
                     Lighthouse Premium License
                   </h3>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-muted-foreground mb-2">
                     Valid for one year from the date of purchase
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    For trial licenses or custom enterprise agreements, please contact us at licensing@letpeople.work
                   </p>
 
                   <div className="mb-6">
                     <div className="text-4xl font-bold text-foreground mb-2">
                       CHF 999 <span className="text-lg font-normal text-muted-foreground">.-</span>
                     </div>
-                    <p className="text-muted-foreground">• One-time payment</p>
-                    <p className="text-muted-foreground">• Valid for 1 Year </p>
-                    <p className="text-muted-foreground">• Usable for up to 50 Lighthouse Instances within your Organization</p>
                   </div>
 
                   {/* License Details Collapsible */}
@@ -785,20 +787,26 @@ const Lighthouse = () => {
                     </CollapsibleTrigger>
                     <CollapsibleContent className="space-y-2">
                       <div className="p-4 bg-accent/20 rounded-lg text-sm text-muted-foreground">
-                        <h4 className="font-semibold text-foreground mb-2">Full License Terms:</h4>
+                        <h4 className="font-semibold text-foreground mb-2">Key License Terms:</h4>
                         <ul className="space-y-1">
                           <li>• License valid for 365 days from purchase date</li>
-                          <li>• Maximum 50 concurrent Lighthouse instances</li>
-                          <li>• Unlimited user accounts per instance</li>
-                          <li>• Includes all premium features and integrations</li>
-                          <li>• Commercial use permitted within licensed organization</li>
-                          <li>• No redistribution or resale allowed</li>
-                          <li>• Priority email support included</li>
-                          <li>• License renewal required after expiration</li>
+                          <li>• Maximum 50 concurrent Lighthouse instances per organization</li>
+                          <li>• Non-transferable, non-sublicensable license</li>
+                          <li>• Commercial use permitted within licensed organization only</li>
+                          <li>• License termination for violations or misuse</li>
+                          <li>• Software provided "as is" without warranties</li>
                         </ul>
-                        <p className="mt-3 text-xs">
-                          For trial licenses or custom enterprise agreements, please contact us at sales@letpeople.work
-                        </p>
+                        <div className="mt-3 pt-3 border-t border-border">
+                          <p className="text-xs mb-2">
+                            <button 
+                              onClick={() => setShowLegalDialog(true)}
+                              className="text-primary hover:underline"
+                            >
+                              View full Terms & Conditions
+                            </button>{" "}
+                            for complete license details and restrictions.
+                          </p>
+                        </div>
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
@@ -863,7 +871,7 @@ const Lighthouse = () => {
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center mt-4">
-                    Secure payment via Stripe • Need a trial? Email us at sales@letpeople.work
+                    Secure payment via Stripe • Need a trial? Email us at licensing@letpeople.work
                   </p>
                 </div>
               </div>
@@ -990,6 +998,13 @@ const Lighthouse = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Legal Information Dialog */}
+      <LegalInfoDialog 
+        open={showLegalDialog}
+        onOpenChange={setShowLegalDialog}
+        defaultTab="terms"
+      />
     </div>
   );
 };
