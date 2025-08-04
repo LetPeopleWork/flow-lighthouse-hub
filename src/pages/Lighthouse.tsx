@@ -1,4 +1,4 @@
-import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, Users, Globe, Gauge, ChevronDown, ChevronUp, User, Mail, Building, CheckCircle, XCircle } from "lucide-react";
+import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, ChevronDown, ChevronUp, User, Mail, Building, CheckCircle, XCircle, Info, Hammer, Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +8,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import Navigation from "@/components/Navigation";
 import SimpleFooter from "@/components/SimpleFooter";
 import MediaCarousel from "@/components/MediaCarousel";
@@ -231,29 +232,6 @@ const Lighthouse = () => {
         "/src/assets/screenshots/Forecasts_Project.png"
       ],
       video: "/src/assets/videos/Forecasts_Project.mp4"
-    }
-  ];
-
-  const premiumFeatures = [
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Enterprise Security",
-      description: "Advanced security features including SSO integration, role-based access control, and audit logging for compliance requirements."
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "Team Scaling",
-      description: "Support for unlimited teams, portfolios, and hierarchical views. Perfect for large organizations with complex structures."
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Multi-Platform Integration",
-      description: "Connect to multiple project management tools simultaneously. Azure DevOps, Jira, GitHub, and more."
-    },
-    {
-      icon: <Gauge className="h-8 w-8" />,
-      title: "Advanced Analytics",
-      description: "Deep dive analytics, custom reporting, and advanced forecasting models with machine learning capabilities."
     }
   ];
 
@@ -515,68 +493,231 @@ const Lighthouse = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Why Choose Premium?
+              Lighthouse{" "}
+              <span className="bg-gradient-primary bg-clip-text text-transparent">
+                Premium
+              </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
-              While our open-source version provides powerful flow metrics, Premium unlocks enterprise-grade
-              capabilities that scale with your organization's growth and complexity.
+              While our free version provides all the features you need to analyze the flow and forecast delivery dates, Premium unlocks enterprise-grade
+              capabilities that help you scale the usage and adoption within your organization and thus lead to a scaled learning.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6">
-                Enterprise-Ready Features
-              </h3>
-              <div className="space-y-6">
-                {premiumFeatures.map((feature) => (
-                  <div key={feature.title} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center text-primary flex-shrink-0">
-                      {feature.icon}
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">
-                        {feature.title}
-                      </h4>
-                      <p className="text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {/* Warning about constraints */}
+          <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <div className="flex items-center justify-center space-x-2">
+              <Info className="h-5 w-5 text-amber-600" />
+              <p className="text-sm text-amber-800 text-center">
+                <span className="font-semibold">Important:</span> Constraints on the free version become effective after Lighthouse v25.7.27.1729
+              </p>
             </div>
+          </div>
 
-            <div className="bg-background rounded-2xl p-8 shadow-soft border border-border">
-              <h4 className="text-xl font-bold text-foreground mb-6 text-center">
-                What You Get with Premium
-              </h4>
-              <ul className="space-y-4">
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Unlimited teams and portfolios</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Advanced security & compliance features</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Multiple platform integrations</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Machine learning-powered analytics</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Priority support & training</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Custom reporting & dashboards</span>
-                </li>
-              </ul>
+          {/* Comparison Table */}
+          <div className="bg-background rounded-2xl p-8 shadow-soft border border-border">
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
+              Free vs Premium Comparison
+            </h3>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-4 px-4 font-semibold text-foreground">Feature</th>
+                    <th className="text-center py-4 px-4 font-semibold text-foreground">Free Version</th>
+                    <th className="text-center py-4 px-4 font-semibold text-foreground bg-gradient-primary bg-clip-text text-transparent">Premium Version</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {/* Base Functionality */}
+                  <tr>
+                    <td colSpan={3} className="py-4 px-4 font-semibold text-foreground bg-accent/30">
+                      Base Functionality
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Flow Metrics for Teams</td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Flow Metrics for Projects</td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Manual Forecasts for Teams</td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Continuous Forecasts for Projects</td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Connection to Jira and Azure DevOps</td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                  
+                  {/* Constraints in Free Version */}
+                  <tr>
+                    <td colSpan={3} className="py-4 px-4 font-semibold text-foreground bg-accent/30">
+                      Usage Limits
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Number of Teams</td>
+                    <td className="py-3 px-4 text-center text-muted-foreground">Max 3</td>
+                    <td className="py-3 px-4 text-center text-foreground font-semibold">Unlimited</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Number of Projects</td>
+                    <td className="py-3 px-4 text-center text-muted-foreground">Max 1</td>
+                    <td className="py-3 px-4 text-center text-foreground font-semibold">Unlimited</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">Import Configuration from Another Instance</td>
+                    <td className="py-3 px-4 text-center">
+                      <XCircle className="h-5 w-5 text-red-500 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                  
+                  {/* Premium Features */}
+                  <tr>
+                    <td colSpan={3} className="py-4 px-4 font-semibold text-foreground bg-accent/30">
+                      Premium-Only Features
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">
+                      <div className="flex items-center space-x-2">
+                        <span>Flow Consultant</span>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Info className="h-4 w-4 text-blue-500" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="text-sm">Get actionable tips to improve your flow based on your data</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <XCircle className="h-5 w-5 text-red-500 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Hammer className="h-5 w-5 text-blue-500 mx-auto" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="text-sm">Work in Progress</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">
+                      <div className="flex items-center space-x-2">
+                        <span>Extended AI/LLM Support</span>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Info className="h-4 w-4 text-blue-500" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="text-sm">Connect Lighthouse to your AI Chat of choice and interact with the data and forecasts through this interface</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <XCircle className="h-5 w-5 text-red-500 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Hammer className="h-5 w-5 text-blue-500 mx-auto" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="text-sm">Work in Progress</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 text-muted-foreground">
+                      <div className="flex items-center space-x-2">
+                        <span>Improved Milestones</span>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Info className="h-4 w-4 text-blue-500" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="text-sm">Define which Features are relevant for which milestone</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <XCircle className="h-5 w-5 text-red-500 mx-auto" />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Calendar className="h-5 w-5 text-orange-500 mx-auto" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="text-sm">On the Roadmap</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div className="mt-6 p-4 bg-accent/20 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">Note:</span> New premium features may be introduced as premium-only for the first few months before being made available to the free version, ensuring premium users get early access to cutting-edge capabilities.
+              </p>
             </div>
           </div>
         </div>
@@ -587,11 +728,24 @@ const Lighthouse = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Get Your Premium License
+              Get Your{" "}
+              <span className="bg-gradient-primary bg-clip-text text-transparent">
+                Premium License
+              </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Purchase your Lighthouse Premium license and unlock enterprise-grade features for your organization.
+              Purchase your Lighthouse Premium license and unlock the full potential of your organization.
             </p>
+          </div>          
+
+          {/* Warning about constraints */}
+          <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <div className="flex items-center justify-center space-x-2">
+              <Info className="h-5 w-5 text-amber-600" />
+              <p className="text-sm text-amber-800 text-center">
+                <span className="font-semibold">Premium License is supported in Versions newer than Lighthouse v25.7.27.1729. In previous versions, a license will not have any effect.</span> 
+              </p>
+            </div>
           </div>
 
           <Card className="border-0 shadow-medium hover:shadow-glow transition-all duration-300">
@@ -606,30 +760,16 @@ const Lighthouse = () => {
                     Lighthouse Premium License
                   </h3>
                   <p className="text-muted-foreground mb-6">
-                    One-year premium license with enterprise features and unlimited users.
+                    Valid for one year from the date of purchase
                   </p>
 
                   <div className="mb-6">
                     <div className="text-4xl font-bold text-foreground mb-2">
-                      $999 <span className="text-lg font-normal text-muted-foreground">USD</span>
+                      CHF 999 <span className="text-lg font-normal text-muted-foreground">.-</span>
                     </div>
-                    <p className="text-muted-foreground">One-time payment • Valid for 1 year</p>
-                  </div>
-
-                  {/* License Highlights */}
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-muted-foreground">Use in up to 50 instances</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-muted-foreground">Valid for 1 year</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-muted-foreground">Unlimited users</span>
-                    </div>
+                    <p className="text-muted-foreground">• One-time payment</p>
+                    <p className="text-muted-foreground">• Valid for 1 Year </p>
+                    <p className="text-muted-foreground">• Usable for up to 50 Lighthouse Instances within your Organization</p>
                   </div>
 
                   {/* License Details Collapsible */}
