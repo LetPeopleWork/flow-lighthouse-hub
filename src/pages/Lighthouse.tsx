@@ -74,19 +74,9 @@ const Lighthouse = () => {
 
   // Check for Stripe payment result and show appropriate dialog
   useEffect(() => {
-    console.log('Lighthouse component mounted');
-    console.log('Current URL:', window.location.href);
-    console.log('Pathname:', window.location.pathname);
-    console.log('Search:', window.location.search);
-
     const urlParams = new URLSearchParams(window.location.search);
     const paymentStatus = urlParams.get('payment');
-
-    console.log('Payment status from URL:', paymentStatus);
-    console.log('All URL params:', Array.from(urlParams.entries()));
-
     if (paymentStatus === 'success') {
-      console.log('Showing success dialog');
       // Show success dialog first
       setPaymentResult({
         show: true,
@@ -97,12 +87,10 @@ const Lighthouse = () => {
 
       // Clear the URL parameters after showing the dialog
       setTimeout(() => {
-        console.log('Clearing URL parameters');
         const newUrl = window.location.pathname;
         window.history.replaceState({}, document.title, newUrl);
       }, 1000); // Increased delay to ensure dialog shows
     } else if (paymentStatus === 'canceled') {
-      console.log('Showing canceled dialog');
       // Show canceled dialog first
       setPaymentResult({
         show: true,
@@ -113,12 +101,9 @@ const Lighthouse = () => {
 
       // Clear the URL parameters after showing the dialog
       setTimeout(() => {
-        console.log('Clearing URL parameters');
         const newUrl = window.location.pathname;
         window.history.replaceState({}, document.title, newUrl);
       }, 1000); // Increased delay to ensure dialog shows
-    } else {
-      console.log('No payment status detected in URL');
     }
   }, []);
 

@@ -22,7 +22,6 @@ We combine the know-how and the tooling, so that we can provide you the services
       (function() {
         var redirectPath = sessionStorage.getItem('spa-redirect');
         if (redirectPath) {
-          console.log('Restoring SPA path:', redirectPath);
           sessionStorage.removeItem('spa-redirect');
           window.history.replaceState(null, null, redirectPath);
         }
