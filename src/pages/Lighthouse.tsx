@@ -1,4 +1,4 @@
-import { ArrowRight, Target, TrendingUp, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, Zap, ChevronDown, ChevronUp, User, Mail, Building, CheckCircle, XCircle, Info, Hammer, Calendar } from "lucide-react";
+import { ArrowRight, Target, FileText, Download, Monitor, Smartphone, Container, Copy, Check, Shield, ChevronDown, ChevronUp, User, Mail, Building, CheckCircle, XCircle, Info, Hammer, Calendar, BarChart3 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,6 +16,15 @@ import lighthouseLogo from "@/assets/LighthouseLogo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
 import LighthouseTestimonials from "@/components/LighthouseTestimonials";
+import metricsTeam1 from "@/assets/screenshots/Metrics_Team_1.png";
+import metricsProject1 from "@/assets/screenshots/Metrics_Project_1.png";
+import forecastsTeamManual from "@/assets/screenshots/Forecasts_Team_Manual.png";
+import forecastsProject from "@/assets/screenshots/Forecasts_Project.png";
+import metricsTeamVideo from "@/assets/videos/Metrics_Team.mp4";
+import forecastsProjectVideo from "@/assets/videos/Forecasts_Project.mp4";
+import almConnectionImage from "@/assets/screenshots/ALM_Connection.png";
+import queryConfigurationImage from "@/assets/screenshots/Query_Configuration.png";
+import gitHubImage from "@/assets/screenshots/GitHub.png";
 
 const Lighthouse = () => {
   const [latestVersion, setLatestVersion] = useState<string>("");
@@ -208,7 +217,7 @@ const Lighthouse = () => {
       video: "/src/assets/videos/Metrics_Team.mp4"
     },
     {
-      title: "Visualize the Flow on Portfolio Level", 
+      title: "Visualize the Flow on Portfolio Level",
       description: "Optimize your end to end value delivery by analyzing higher flight levels",
       images: [
         "/src/assets/screenshots/Metrics_Project_1.png",
@@ -237,54 +246,93 @@ const Lighthouse = () => {
 
   const detailedFeatures = [
     {
-      icon: <FileText className="h-8 w-8" />,
-      title: "Fully Open Source",
-      description: "Core functionality freely available. No vendor lock-in. Full transparency and community-driven development.",
-      details: [
-        "Complete source code available on GitHub",
-        "Community contributions welcomed and encouraged",
-        "No licensing fees for core features",
-        "Self-hosted deployment options",
-        "Full control over your data and infrastructure"
+      icon: <BarChart3 className="h-8 w-8" />,
+      title: "Visualize your Flow",
+      description: "Take action based on real data - with Lighthouse you have all relevant Flow Metrics at your disposal",
+      extendedDescription: `Whether it's on team or on portfolio level, you can't have easier access to a complete overview over your Flow than with Lighthouse.
+      Whether you want to see the impact of a recent change, analyze how the last weeks went together with the team, or look for outliers to learn from - Lighthouse is making it easy for you!
+      
+      You have access to all the metrics that are relevant for a deep analysis, can filter the date range you look at, and drill down to the specific items including direct links to your connected systems.
+      
+      If you want to work data-driven, these are the metrics you need. And Lighthouse is the tool you want to visualize them!`,
+      callToAction: "Miss some specific Metric or Chart? Reach out!",
+      mediaItems: [
+        {
+          type: "image" as const,
+          src: metricsTeam1,
+          alt: "Team Metrics"
+        },
+        {
+          type: "image" as const,
+          src: metricsProject1,
+          alt: "Projects Metrics"
+        },
+        {
+          type: "video" as const,
+          src: metricsTeamVideo,
+          alt: "Team Metrics Demo"
+        }
       ]
     },
     {
       icon: <Target className="h-8 w-8" />,
-      title: "Flow Metrics & Forecasting",
-      description: "Real-time insights and predictive delivery dates based on your team's actual performance data.",
-      details: [
-        "Cycle time tracking and analysis",
-        "Throughput measurement and trends",
-        "Monte Carlo forecasting simulations",
-        "Historical performance baselines",
-        "Predictive delivery date calculations",
-        "Flow efficiency measurements"
-      ]
+      title: "Forecast Delivery Dates",
+      description: "Stop wasting time with guesses - Lighthouse is using your historical data to create realistic timelines in seconds",
+      extendedDescription: `Instead of spending time with detailed breakdowns or assigning made up points to things, start making use of the data you already have!
+      
+      Lighthouse is using Monte Carlo Simulations to create probabilistic forecasts. Those forecasts come with an associated probability, which will help you do proper risk management.
+      Like a Lighthouse that is consistently shining light into the darkness, the forecasts are updated continuously, so that you can take action once you notice that your initial plan may not work out anymore.
+
+      You have the data already, now you just need Lighthouse and you will be able to create plans and timelines within seconds!`,
+      callToAction: "",
+      mediaItems: [{
+          type: "image" as const,
+          src: forecastsTeamManual,
+          alt: "Team Forecasts"
+        },
+        {
+          type: "image" as const,
+          src: forecastsProject,
+          alt: "Projects Forecasts"
+        },
+        {
+          type: "video" as const,
+          src: forecastsProjectVideo,
+          alt: "Project Forecasts Demo"
+        }]
     },
     {
-      icon: <TrendingUp className="h-8 w-8" />,
-      title: "100% Swiss Made",
-      description: "Developed in Switzerland with precision, quality, and data privacy as core principles.",
-      details: [
-        "GDPR compliance built-in by design",
-        "Swiss data protection standards",
-        "Privacy-first architecture",
-        "No data collection or tracking",
-        "European hosting options available"
-      ]
+      icon: <ArrowRight className="h-8 w-8" />,
+      title: "Integrate with most popular ALM Tools",
+      description: "No need to maintain multiple data sources - Lighthouse connects to Jira and Azure DevOps",
+      extendedDescription: `You don't want to maintain your data in yet another tool. This is why Lighthouse is connection to what you are already using.
+      
+      It's flexible design allows Lighthouse to connect with your data source, independent how you designed it. Using custom fields or labels? Have some special filters you want to apply? Lighthouse can cope with that!`,
+      callToAction: "Your System is not supported? Let us know!",
+      mediaItems: [{
+          type: "image" as const,
+          src: almConnectionImage,
+          alt: "ALM Connection"
+        },
+        {
+          type: "image" as const,
+          src: queryConfigurationImage,
+          alt: "Query Configuration"
+        }]
     },
     {
-      icon: <Zap className="h-8 w-8" />,
-      title: "Real-time Dashboard",
-      description: "Live updates and interactive visualizations that keep your team informed and aligned.",
-      details: [
-        "Real-time work item status updates",
-        "Interactive charts and graphs",
-        "Customizable dashboard layouts",
-        "Team performance scorecards",
-        "Automated alert notifications",
-        "Mobile-responsive design"
-      ]
+      icon: <FileText className="h-8 w-8" />,
+      title: "Full Transparency - Full Control",
+      description: "No need to send your data to some cloud provider in a foreign country - Lighthouse is 100% Open-Source, runs fully on your infrastructure and will not send anything to the cloud",
+      extendedDescription: `We don't want our datat to go uncontrolled in the Cloud. We assume you are the same. This is why there is no third-party cloud provider involved. Don't trust us? Check out the code yourself, Lighthouse is 100% Open-Source.
+      
+      It's 100% made in Switzerland, where we have many banks that have tight security constraints when it comes to Software. This is why we put effort into making it possible for everyone to be able to run it. All of this applies to the free and the premium version.`,
+      callToAction: "Struggle to get it approved in your company? Let us know and we're trying to support!",
+      mediaItems: [{
+          type: "image" as const,
+          src: gitHubImage,
+          alt: "Github"
+        }]
     }
   ];
 
@@ -442,14 +490,14 @@ const Lighthouse = () => {
                           {feature.description}
                         </p>
                       </div>
-                      
+
                       <div className="flex flex-col justify-center items-center space-y-4">
                         {/* Media Carousel */}
                         <MediaCarousel
                           mediaItems={mediaItems.map(media => ({
                             type: media.type as 'image' | 'video',
                             src: media.src,
-                            alt: media.type === 'image' 
+                            alt: media.type === 'image'
                               ? `${feature.title} screenshot ${mediaItems.indexOf(media) + 1}`
                               : `${feature.title} demo video`
                           }))}
@@ -457,7 +505,7 @@ const Lighthouse = () => {
                           enableModal={true}
                           posterImage={feature.images[0]}
                         />
-                        
+
                         {/* Media indicators */}
                         {mediaItems.length > 1 && (
                           <div className="flex justify-center space-x-2">
@@ -519,7 +567,7 @@ const Lighthouse = () => {
             <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
               Free vs Premium Comparison
             </h3>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -581,7 +629,7 @@ const Lighthouse = () => {
                       <Check className="h-5 w-5 text-green-600 mx-auto" />
                     </td>
                   </tr>
-                  
+
                   {/* Constraints in Free Version */}
                   <tr>
                     <td colSpan={3} className="py-4 px-4 font-semibold text-foreground bg-accent/30">
@@ -607,7 +655,7 @@ const Lighthouse = () => {
                       <Check className="h-5 w-5 text-green-600 mx-auto" />
                     </td>
                   </tr>
-                  
+
                   {/* Premium Features */}
                   <tr>
                     <td colSpan={3} className="py-4 px-4 font-semibold text-foreground bg-accent/30">
@@ -713,7 +761,7 @@ const Lighthouse = () => {
                 </tbody>
               </table>
             </div>
-            
+
             <div className="mt-6 p-4 bg-accent/20 rounded-lg">
               <p className="text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">Note:</span> New premium features may be introduced as premium-only for the first few months before being made available to the free version, ensuring premium users get early access to cutting-edge capabilities.
@@ -736,14 +784,14 @@ const Lighthouse = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Purchase your Lighthouse Premium license and unlock the full potential of your organization.
             </p>
-          </div>          
+          </div>
 
           {/* Warning about constraints */}
           <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
             <div className="flex items-center justify-center space-x-2">
               <Info className="h-5 w-5 text-amber-600" />
               <p className="text-sm text-amber-800 text-center">
-                <span className="font-semibold">Premium License is supported in Versions newer than Lighthouse v25.7.27.1729. In previous versions, a license will not have any effect.</span> 
+                <span className="font-semibold">Premium License is supported in Versions newer than Lighthouse v25.7.27.1729. In previous versions, a license will not have any effect.</span>
               </p>
             </div>
           </div>
@@ -881,8 +929,20 @@ const Lighthouse = () => {
               Deep Dive into Key Features
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explore what makes Lighthouse the leading choice for flow-based project management.
+              Explore what makes Lighthouse the leading choice for Project Managers, Internal Coaches, and external Consultants.
             </p>
+            <p className="text-sm text-muted-foreground mt-4">
+              Find a full reference of all features in the{" "}
+              <a 
+                href="https://docs.lighthouse.letpeople.work" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Lighthouse documentation
+              </a>
+            </p>
+            
           </div>
 
           <div className="space-y-16">
@@ -898,21 +958,43 @@ const Lighthouse = () => {
                       <p className="text-muted-foreground">{feature.description}</p>
                     </div>
                   </div>
+
+                  {/* Extended description - space for content to be added later */}
+                  {feature.extendedDescription && (
+                    <div className="mt-6">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {feature.extendedDescription}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Call to Action Hint */}
+                  {feature.callToAction && (
+                    <div className="mt-6 p-4 bg-accent/20 border-l-4 border-muted-foreground/30 rounded-r-lg">
+                      <p className="text-muted-foreground text-sm font-medium">
+                        💡 {feature.callToAction}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                  <Card className="border-0 shadow-soft">
-                    <CardContent className="p-8">
-                      <ul className="space-y-4">
-                        {feature.details.map((detail) => (
-                          <li key={detail} className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
+                  {/* Media Carousel - to be filled with content later */}
+                  {feature.mediaItems.length > 0 ? (
+                    <MediaCarousel
+                      mediaItems={feature.mediaItems}
+                      className="w-full h-80"
+                      enableModal={true}
+                    />
+                  ) : (
+                    <Card className="border-0 shadow-soft h-80">
+                      <CardContent className="p-8 h-full flex items-center justify-center">
+                        <div className="text-center text-muted-foreground">
+                          <p>Media carousel placeholder - content to be added later</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
                 </div>
               </div>
             ))}

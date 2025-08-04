@@ -61,13 +61,13 @@ const MediaCarousel = ({
               openImageModal(currentItem.src, currentItem.alt);
             }
           }}
-          className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full cursor-pointer hover:scale-[1.02] bg-transparent border-0 p-0"
+          className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full h-full cursor-pointer hover:scale-[1.02] bg-transparent border-0 p-0 flex items-center justify-center"
           aria-label={`Expand ${currentItem.alt}`}
         >
           <img 
             src={currentItem.src} 
             alt={currentItem.alt}
-            className="w-full h-full object-contain rounded-lg"
+            className="max-w-full max-h-full object-contain rounded-lg"
           />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/20 rounded-lg">
             <div className="bg-white/90 rounded-full px-3 py-1">
@@ -79,11 +79,13 @@ const MediaCarousel = ({
     }
     
     return (
-      <img 
-        src={currentItem.src} 
-        alt={currentItem.alt}
-        className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full h-full object-contain"
-      />
+      <div className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full h-full flex items-center justify-center">
+        <img 
+          src={currentItem.src} 
+          alt={currentItem.alt}
+          className="max-w-full max-h-full object-contain rounded-lg"
+        />
+      </div>
     );
   };
 
@@ -99,10 +101,10 @@ const MediaCarousel = ({
         {currentItem.type === "image" ? (
           renderImage()
         ) : (
-          <div className="relative rounded-lg overflow-hidden shadow-medium hover:shadow-glow transition-all duration-300">
+          <div className="relative rounded-lg overflow-hidden shadow-medium hover:shadow-glow transition-all duration-300 flex items-center justify-center">
             <video
               src={currentItem.src}
-              className="w-full h-full object-contain"
+              className="max-w-full max-h-full object-contain"
               title={currentItem.alt}
               controls
               preload="metadata"
