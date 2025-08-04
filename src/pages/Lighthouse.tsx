@@ -84,7 +84,7 @@ const Lighthouse = () => {
         show: true,
         type: 'success',
         title: 'Upgrade Complete! 🎉',
-        description: 'Your payment has been processed successfully. We\'re preparing your premium license and will send it to your email shortly from licensing@lighthouse.letpeople.work.\n\nExpect it within the next 4 hours. Please check your inbox and spam folder.\n\nHaven\'t received it? No worries – just drop us a line at licensing@letpeople.work and we\'ll sort it out.'
+        description: 'Your payment has been processed successfully. We\'re preparing your premium license and will send it to your email shortly from licensing@lighthouse.letpeople.work.\n\nExpected it within the next 4 hours. Please check your inbox and spam folder.\n\nHaven\'t received it? No worries – just drop us a line at licensing@letpeople.work and we\'ll sort it out.'
       });
 
       // Clear the URL parameters after showing the dialog
@@ -106,6 +106,20 @@ const Lighthouse = () => {
         const newUrl = window.location.pathname;
         window.history.replaceState({}, document.title, newUrl);
       }, 1000); // Increased delay to ensure dialog shows
+    }
+  }, []);
+
+  // Handle anchor navigation
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      // Small delay to ensure the page has rendered
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
     }
   }, []);
 
@@ -433,7 +447,7 @@ const Lighthouse = () => {
       </section>
 
       {/* Overview Section with Screenshots */}
-      <section className="py-20 bg-background">
+      <section id="lighthouse-overview" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
@@ -483,14 +497,14 @@ const Lighthouse = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-background">
+      <section id="lighthouse-testimonials" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <LighthouseTestimonials />
         </div>
       </section>
 
       {/* Why Premium Section */}
-      <section className="py-20 bg-gradient-subtle">
+      <section id="lighthouse-premium" className="py-20 bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
@@ -725,7 +739,7 @@ const Lighthouse = () => {
       </section>
 
       {/* License Purchase Section */}
-      <section className="py-20 bg-background">
+      <section id="lighthouse-license" className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
@@ -887,7 +901,7 @@ const Lighthouse = () => {
       </section>
 
       {/* Detailed Features Section */}
-      <section className="py-20 bg-gradient-subtle">
+      <section id="lighthouse-features" className="py-20 bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">

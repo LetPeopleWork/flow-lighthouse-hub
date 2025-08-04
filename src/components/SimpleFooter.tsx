@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LegalInfoDialog from "./LegalInfoDialog";
+import logo from "@/assets/LPW_Banner_White.png";
 
 const SimpleFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -24,8 +25,7 @@ const SimpleFooter = () => {
 
             {/* Logo - Center */}
             <div className="flex-shrink-0">
-              <img 
-                src="/src/assets/LPW_Banner_White.png" 
+              <img src={logo}
                 alt="LetPeopleWork" 
                 className="h-10 w-auto"
               />
