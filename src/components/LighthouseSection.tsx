@@ -1,7 +1,8 @@
-import { ArrowRight, BarChart3, Target, TrendingUp, FileText, PlayCircle, ChevronLeft, ChevronRight, Download, Monitor, Smartphone, Container, Copy, Check } from "lucide-react";
+import { ArrowRight, BarChart3, Target, FileText, Download, Monitor, Smartphone, Container, Copy, Check } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import MediaCarousel from "@/components/MediaCarousel";
 import lighthouseLogo from "@/assets/LighthouseLogo.png";
 import metricsTeam1 from "@/assets/screenshots/Metrics_Team_1.png";
 import forecastsTeamManual from "@/assets/screenshots/Forecasts_Team_Manual.png";
@@ -9,13 +10,9 @@ import forecastsProjectVideo from "@/assets/videos/Forecasts_Project.mp4";
 import LighthouseTestimonials from "@/components/LighthouseTestimonials";
 
 const LighthouseSection = () => {
-  const [currentMedia, setCurrentMedia] = useState(0);
   const [latestVersion, setLatestVersion] = useState<string>("");
   const [isLoadingVersion, setIsLoadingVersion] = useState(false);
   const [copiedCommand, setCopiedCommand] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImageSrc, setModalImageSrc] = useState("");
-  const [modalImageAlt, setModalImageAlt] = useState("");
   
   // Fetch latest version from GitHub releases
   useEffect(() => {
@@ -63,18 +60,6 @@ const LighthouseSection = () => {
     }
   };
 
-  const openImageModal = (src: string, alt: string) => {
-    setModalImageSrc(src);
-    setModalImageAlt(alt);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalImageSrc("");
-    setModalImageAlt("");
-  };
-
   const platforms = [
     {
       id: 'windows',
@@ -104,17 +89,17 @@ const LighthouseSection = () => {
   
   const mediaItems = [
     {
-      type: "image",
+      type: "image" as const,
       src: metricsTeam1,
       alt: "Team Metrics Overview"
     },
     {
-      type: "image",
+      type: "image" as const,
       src: forecastsTeamManual,
       alt: "Team Forecasts Manual"
     },
     {
-      type: "video",
+      type: "video" as const,
       src: forecastsProjectVideo,
       alt: "Project Forecasts Demo"
     }
@@ -172,66 +157,11 @@ const LighthouseSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Media Carousel */}
           <div className="order-2 lg:order-1">
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-primary rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-              
-              {mediaItems[currentMedia].type === "image" ? (
-                <button
-                  onClick={() => openImageModal(mediaItems[currentMedia].src, mediaItems[currentMedia].alt)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      openImageModal(mediaItems[currentMedia].src, mediaItems[currentMedia].alt);
-                    }
-                  }}
-                  className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full cursor-pointer hover:scale-[1.02] bg-transparent border-0 p-0"
-                  aria-label={`Expand ${mediaItems[currentMedia].alt}`}
-                >
-                  <img 
-                    src={mediaItems[currentMedia].src} 
-                    alt={mediaItems[currentMedia].alt}
-                    className="w-full rounded-lg"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/20 rounded-lg">
-                    <div className="bg-white/90 rounded-full p-2">
-                      <span className="text-sm font-medium text-gray-900">Click to expand</span>
-                    </div>
-                  </div>
-                </button>
-              ) : (
-                <div className="relative rounded-lg overflow-hidden shadow-medium hover:shadow-glow transition-all duration-300">
-                  <video
-                    src={mediaItems[currentMedia].src}
-                    className="w-full aspect-video"
-                    title={mediaItems[currentMedia].alt}
-                    controls
-                    preload="metadata"
-                  >
-                    <track kind="captions" />
-                  </video>
-                </div>
-              )}
-              
-              {/* Navigation buttons */}
-              <button
-                onClick={() => setCurrentMedia((prev) => (prev - 1 + mediaItems.length) % mediaItems.length)}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 hover:bg-background transition-colors"
-              >
-                <ChevronLeft className="h-5 w-5 text-primary" />
-              </button>
-              <button
-                onClick={() => setCurrentMedia((prev) => (prev + 1) % mediaItems.length)}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 hover:bg-background transition-colors"
-              >
-                <ChevronRight className="h-5 w-5 text-primary" />
-              </button>
-              
-              {/* Media type indicator */}
-              <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm rounded-full px-3 py-1 text-sm text-primary">
-                {mediaItems[currentMedia].type === "video" ? <PlayCircle className="h-4 w-4" /> : "📷"} 
-                {currentMedia + 1}/{mediaItems.length}
-              </div>
-            </div>
+            <MediaCarousel
+              mediaItems={mediaItems}
+              className="w-full"
+              enableModal={true}
+            />
           </div>
 
           {/* Features */}
@@ -326,47 +256,6 @@ const LighthouseSection = () => {
 
         {/* Testimonials Slider */}
         <LighthouseTestimonials />
-
-        {/* Image Modal */}
-        {isModalOpen && (
-          <dialog 
-            open
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm border-0 p-0 w-full h-full max-w-none max-h-none" 
-            aria-labelledby="modal-title"
-          >
-            <div className="relative max-w-[90vw] max-h-[90vh] p-4">
-              <button
-                onClick={closeModal}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-                aria-label="Close modal"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              <img
-                src={modalImageSrc}
-                alt={modalImageAlt}
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                id="modal-title"
-              />
-            </div>
-            {/* Background overlay that closes modal when clicked */}
-            <button 
-              className="absolute inset-0 -z-10 bg-transparent border-0 cursor-pointer"
-              onClick={closeModal}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  closeModal();
-                } else if (e.key === 'Escape') {
-                  closeModal();
-                }
-              }}
-              aria-label="Close modal by clicking background"
-            />
-          </dialog>
-        )}
       </div>
     </section>
   );

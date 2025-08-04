@@ -7,8 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Navigation from "@/components/Navigation";
 import SimpleFooter from "@/components/SimpleFooter";
+import MediaCarousel from "@/components/MediaCarousel";
 import lighthouseLogo from "@/assets/LighthouseLogo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
@@ -191,6 +193,44 @@ const Lighthouse = () => {
       name: 'Docker',
       icon: <Container className="h-4 w-4" />,
       action: () => copyToClipboard(dockerCommand)
+    }
+  ];
+
+  const lighthouseFeatures = [
+    {
+      title: "Visualize the Flow for Teams",
+      description: "Inspect how well work flows through your system and use the data to drive improvements",
+      images: [
+        "/src/assets/screenshots/Metrics_Team_1.png",
+        "/src/assets/screenshots/Metrics_Team_2.png"
+      ],
+      video: "/src/assets/videos/Metrics_Team.mp4"
+    },
+    {
+      title: "Visualize the Flow on Portfolio Level", 
+      description: "Optimize your end to end value delivery by analyzing higher flight levels",
+      images: [
+        "/src/assets/screenshots/Metrics_Project_1.png",
+        "/src/assets/screenshots/Metrics_Project_2.png"
+      ],
+      video: "/src/assets/videos/Metrics_Projects.mp4"
+    },
+    {
+      title: "Run Forecasts for your Team",
+      description: "Make plannings a breeze and get answers to \"When will it be done\" and \"How much can we do\" within seconds",
+      images: [
+        "/src/assets/screenshots/Forecasts_Team_Manual.png",
+        "/src/assets/screenshots/Forecasts_Team_Epics.png"
+      ],
+      video: "/src/assets/videos/Forecasts_Team.mp4"
+    },
+    {
+      title: "Create Realistic Delivery Timelines",
+      description: "Use the power of Monte Carlo Simulations to create timelines that are based on your historical data",
+      images: [
+        "/src/assets/screenshots/Forecasts_Project.png"
+      ],
+      video: "/src/assets/videos/Forecasts_Project.mp4"
     }
   ];
 
@@ -400,44 +440,66 @@ const Lighthouse = () => {
               See Lighthouse in Action
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explore the intuitive interface and powerful features that make flow visualization effortless.
+              Discover how Lighthouse can transform your flow metrics and forecasting
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-foreground">
-                Real-time Flow Visualization
-              </h3>
-              <p className="text-muted-foreground">
-                Watch your work items flow through your process in real-time. Identify bottlenecks, track progress,
-                and get instant insights into your team's performance.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Interactive flow diagrams and charts</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Live work item tracking across teams</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-muted-foreground">Automated performance calculations</span>
-                </li>
-              </ul>
-            </div>
+          <Carousel className="w-full max-w-6xl mx-auto">
+            <CarouselContent>
+              {lighthouseFeatures.map((feature) => {
+                // Create media array with both images and video
+                const mediaItems = [
+                  ...feature.images.map(img => ({ type: 'image', src: img })),
+                  ...(feature.video ? [{ type: 'video', src: feature.video }] : [])
+                ];
 
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-primary rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-              <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
-                alt="Lighthouse Dashboard Preview"
-                className="relative rounded-lg shadow-medium hover:shadow-glow transition-all duration-300 w-full"
-              />
-            </div>
-          </div>
+                return (
+                  <CarouselItem key={feature.title}>
+                    <div className="grid lg:grid-cols-2 gap-12 p-6 min-h-[400px]">
+                      <div className="flex flex-col justify-center space-y-6">
+                        <h3 className="text-2xl font-bold text-foreground">
+                          {feature.title}
+                        </h3>
+                        <p className="text-muted-foreground text-lg">
+                          {feature.description}
+                        </p>
+                      </div>
+                      
+                      <div className="flex flex-col justify-center items-center space-y-4">
+                        {/* Media Carousel */}
+                        <MediaCarousel
+                          mediaItems={mediaItems.map(media => ({
+                            type: media.type as 'image' | 'video',
+                            src: media.src,
+                            alt: media.type === 'image' 
+                              ? `${feature.title} screenshot ${mediaItems.indexOf(media) + 1}`
+                              : `${feature.title} demo video`
+                          }))}
+                          className="w-full max-w-lg h-80"
+                          enableModal={true}
+                          posterImage={feature.images[0]}
+                        />
+                        
+                        {/* Media indicators */}
+                        {mediaItems.length > 1 && (
+                          <div className="flex justify-center space-x-2">
+                            {mediaItems.map((media, index) => (
+                              <div
+                                key={`${feature.title}-indicator-${index}`}
+                                className="w-2 h-2 rounded-full bg-muted-foreground/30"
+                              />
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </section>
 
