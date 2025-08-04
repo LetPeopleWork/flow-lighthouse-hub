@@ -279,9 +279,9 @@ const Lighthouse = () => {
       icon: <ArrowRight className="h-8 w-8" />,
       title: "Integrate with most popular ALM Tools",
       description: "No need to maintain multiple data sources - Lighthouse connects to Jira and Azure DevOps",
-      extendedDescription: `You don't want to maintain your data in yet another tool. This is why Lighthouse is connection to what you are already using.
+      extendedDescription: `You don't want to maintain your data in yet another tool. This is why Lighthouse is connected to what you are already using.
       
-      It's flexible design allows Lighthouse to connect with your data source, independent how you designed it. Using custom fields or labels? Have some special filters you want to apply? Lighthouse can cope with that!`,
+      Its flexible design allows Lighthouse to connect with your data source, independent how you designed it. Using custom fields or labels? Have some special filters you want to apply? Lighthouse can cope with that!`,
       callToAction: "Your System is not supported? Let us know!",
       mediaItems: [{
         type: "image" as const,
@@ -298,10 +298,10 @@ const Lighthouse = () => {
       icon: <FileText className="h-8 w-8" />,
       title: "Full Transparency - Full Control",
       description: "No need to send your data to some cloud provider in a foreign country - Lighthouse is 100% Open-Source, runs fully on your infrastructure and will not send anything to the cloud",
-      extendedDescription: `We don't want our datat to go uncontrolled in the Cloud. We assume you are the same. This is why there is no third-party cloud provider involved. Don't trust us? Check out the code yourself, Lighthouse is 100% Open-Source.
+      extendedDescription: `We don't want our data to go uncontrolled in the Cloud. We assume you are the same. This is why there is no third-party cloud provider involved. Don't trust us? Check out the code yourself, Lighthouse is 100% Open-Source.
       
       It's 100% made in Switzerland, where we have many banks that have tight security constraints when it comes to Software. This is why we put effort into making it possible for everyone to be able to run it. All of this applies to the free and the premium version.`,
-      callToAction: "Struggle to get it approved in your company? Let us know and we're trying to support!",
+      callToAction: "Struggle to get it approved in your company? Let us know and we will support you!",
       mediaItems: [{
         type: "image" as const,
         src: gitHubImage,
@@ -763,9 +763,15 @@ const Lighthouse = () => {
                   <p className="text-muted-foreground mb-2">
                     Valid for one year from the date of purchase
                   </p>
-                  <p className="text-sm text-muted-foreground mb-6">
-                    For trial licenses or custom enterprise agreements, please contact us at licensing@letpeople.work
-                  </p>
+                    <div className="text-sm text-muted-foreground mb-6">
+                    <p className="mb-2">Please contact us at licensing@letpeople.work if you:</p>
+                    <ul className="space-y-1 ml-4">
+                      <li>• Are interested in a trial license</li>
+                      <li>• Want to explore a pricing reduction or a custom enterprise agreements</li>
+                      <li>• Need a custom invoice</li>
+                      <li>• Have any other license related question</li>
+                    </ul>
+                    </div>
 
                   <div className="mb-6">
                     <div className="text-4xl font-bold text-foreground mb-2">
@@ -871,7 +877,7 @@ const Lighthouse = () => {
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center mt-4">
-                    Secure payment via Stripe • Need a trial? Email us at licensing@letpeople.work
+                    You will be forwarded to Stripe to securely complete your payment
                   </p>
                 </div>
               </div>
