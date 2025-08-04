@@ -1,51 +1,37 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
-
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type"
 };
-
-serve(async (req) => {
+serve(async (req)=>{
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, {
+      headers: corsHeaders
+    });
   }
-
   try {
-    const { name, email, organization, licenseType = "premium" } = await req.json();
-
+    const { name, email, organization } = await req.json();
     // Validate required fields
     if (!name || !email) {
       throw new Error("Name and email are required");
     }
-
     // Initialize Stripe
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
-      apiVersion: "2023-10-16",
+      apiVersion: "2023-10-16"
     });
-
-    // Define pricing based on license type
-    const prices = {
-      premium: 99900, // $999 in cents
-      enterprise: 199900, // $1999 in cents
-    };
-
-    const productNames = {
-      premium: "Lighthouse Premium License",
-      enterprise: "Lighthouse Enterprise License",
-    };
-
-    const amount = prices[licenseType as keyof typeof prices] || prices.premium;
-    const productName = productNames[licenseType as keyof typeof productNames] || productNames.premium;
-
+    const amount = 99900;
+    const productName = "Lighthouse License";
     // Check if a Stripe customer record exists for this email
-    const customers = await stripe.customers.list({ email: email, limit: 1 });
+    const customers = await stripe.customers.list({
+      email: email,
+      limit: 1
+    });
     let customerId;
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
     }
-
     // Create a one-time payment session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -53,36 +39,44 @@ serve(async (req) => {
       line_items: [
         {
           price_data: {
-            currency: "usd",
-            product_data: { 
+            currency: "chf",
+            product_data: {
               name: productName,
-              description: `License for ${organization || 'Individual'}`,
+              description: `Lighhtouse License for ${organization || 'Individual'}`
             },
-            unit_amount: amount,
+            unit_amount: amount
           },
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ],
       mode: "payment",
       metadata: {
         customer_name: name,
         customer_email: email,
-        organization: organization || '',
-        license_type: licenseType,
+        organization: organization || ''
       },
       success_url: `${req.headers.get("origin")}/lighthouse?payment=success`,
-      cancel_url: `${req.headers.get("origin")}/lighthouse?payment=canceled`,
+      cancel_url: `${req.headers.get("origin")}/lighthouse?payment=canceled`
     });
-
-    return new Response(JSON.stringify({ url: session.url }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 200,
+    return new Response(JSON.stringify({
+      url: session.url
+    }), {
+      headers: {
+        ...corsHeaders,
+        "Content-Type": "application/json"
+      },
+      status: 200
     });
   } catch (error) {
     console.error('Error in create-payment:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 500,
+    return new Response(JSON.stringify({
+      error: error.message
+    }), {
+      headers: {
+        ...corsHeaders,
+        "Content-Type": "application/json"
+      },
+      status: 500
     });
   }
 });
