@@ -83,8 +83,8 @@ const Lighthouse = () => {
       setPaymentResult({
         show: true,
         type: 'success',
-        title: 'Payment Successful!',
-        description: 'You will receive your license by mail from licensing@lighthouse.letpeople.work. Check your inbox. If you don\'t receive it within the next 4h, please reach out to support@letpeople.work'
+        title: 'Upgrade Complete! 🎉',
+        description: 'Your payment has been processed successfully. We\'re preparing your premium license and will send it to your email shortly from licensing@lighthouse.letpeople.work.\n\nExpect it within the next 4 hours. Please check your inbox and spam folder.\n\nHaven\'t received it? No worries – just drop us a line at licensing@letpeople.work and we\'ll sort it out.'
       });
 
       // Clear the URL parameters after showing the dialog
@@ -260,20 +260,20 @@ const Lighthouse = () => {
       You have the data already, now you just need Lighthouse and you will be able to create plans and timelines within seconds!`,
       callToAction: "",
       mediaItems: [{
-          type: "image" as const,
-          src: forecastsTeamManual,
-          alt: "Team Forecasts"
-        },
-        {
-          type: "image" as const,
-          src: forecastsProject,
-          alt: "Projects Forecasts"
-        },
-        {
-          type: "video" as const,
-          src: forecastsProjectVideo,
-          alt: "Project Forecasts Demo"
-        }]
+        type: "image" as const,
+        src: forecastsTeamManual,
+        alt: "Team Forecasts"
+      },
+      {
+        type: "image" as const,
+        src: forecastsProject,
+        alt: "Projects Forecasts"
+      },
+      {
+        type: "video" as const,
+        src: forecastsProjectVideo,
+        alt: "Project Forecasts Demo"
+      }]
     },
     {
       icon: <ArrowRight className="h-8 w-8" />,
@@ -284,15 +284,15 @@ const Lighthouse = () => {
       It's flexible design allows Lighthouse to connect with your data source, independent how you designed it. Using custom fields or labels? Have some special filters you want to apply? Lighthouse can cope with that!`,
       callToAction: "Your System is not supported? Let us know!",
       mediaItems: [{
-          type: "image" as const,
-          src: almConnectionImage,
-          alt: "ALM Connection"
-        },
-        {
-          type: "image" as const,
-          src: queryConfigurationImage,
-          alt: "Query Configuration"
-        }]
+        type: "image" as const,
+        src: almConnectionImage,
+        alt: "ALM Connection"
+      },
+      {
+        type: "image" as const,
+        src: queryConfigurationImage,
+        alt: "Query Configuration"
+      }]
     },
     {
       icon: <FileText className="h-8 w-8" />,
@@ -303,10 +303,10 @@ const Lighthouse = () => {
       It's 100% made in Switzerland, where we have many banks that have tight security constraints when it comes to Software. This is why we put effort into making it possible for everyone to be able to run it. All of this applies to the free and the premium version.`,
       callToAction: "Struggle to get it approved in your company? Let us know and we're trying to support!",
       mediaItems: [{
-          type: "image" as const,
-          src: gitHubImage,
-          alt: "Github"
-        }]
+        type: "image" as const,
+        src: gitHubImage,
+        alt: "Github"
+      }]
     }
   ];
 
@@ -798,7 +798,7 @@ const Lighthouse = () => {
                         </ul>
                         <div className="mt-3 pt-3 border-t border-border">
                           <p className="text-xs mb-2">
-                            <button 
+                            <button
                               onClick={() => setShowLegalDialog(true)}
                               className="text-primary hover:underline"
                             >
@@ -892,16 +892,16 @@ const Lighthouse = () => {
             </p>
             <p className="text-sm text-muted-foreground mt-4">
               Find a full reference of all features in the{" "}
-              <a 
-                href="https://docs.lighthouse.letpeople.work" 
-                target="_blank" 
+              <a
+                href="https://docs.lighthouse.letpeople.work"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
               >
                 Lighthouse documentation
               </a>
             </p>
-            
+
           </div>
 
           <div className="space-y-16">
@@ -983,9 +983,17 @@ const Lighthouse = () => {
             </DialogTitle>
           </DialogHeader>
           <div className="text-center space-y-4">
-            <p className="text-muted-foreground leading-relaxed">
-              {paymentResult.description}
-            </p>
+            {paymentResult.type === 'success' ? (
+              <div className="text-muted-foreground leading-relaxed space-y-3 text-left">
+                <p>Your payment has been processed successfully. We're preparing your premium license and will send it to your email shortly from licensing@lighthouse.letpeople.work.</p>
+                <p>Expect it within the next 4 hours. Please check your inbox and spam folder.</p>
+                <p>Haven't received it? No worries – just drop us a line at <a href="mailto:licensing@letpeople.work" className="text-primary hover:underline">licensing@letpeople.work</a> and we'll sort it out.</p>
+              </div>
+            ) : (
+              <p className="text-muted-foreground leading-relaxed">
+                {paymentResult.description}
+              </p>
+            )}
             <Button
               onClick={() => setPaymentResult({ ...paymentResult, show: false })}
               className={`w-full ${paymentResult.type === 'success'
@@ -1000,7 +1008,7 @@ const Lighthouse = () => {
       </Dialog>
 
       {/* Legal Information Dialog */}
-      <LegalInfoDialog 
+      <LegalInfoDialog
         open={showLegalDialog}
         onOpenChange={setShowLegalDialog}
         defaultTab="terms"
