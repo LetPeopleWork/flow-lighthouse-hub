@@ -14,11 +14,11 @@ export interface Testimonial {
 const testimonials: Testimonial[] = [
     {
         quote: "Lighthouse transformed how we understand and optimize our team's workflow. The insights are invaluable.",
-        author: "Sarah Johnson",
-        role: "Engineering Manager",
-        company: "TechCorp",
-        authorUrl: "https://linkedin.com/in/sarah-johnson",
-        companyUrl: "https://techcorp.com"
+        author: "Agnieszka Reginek",
+        role: "Professional Kanban Trainer | Scrum Master",
+        company: "",
+        authorUrl: "https://www.linkedin.com/in/agnieszka-reginek/",
+        companyUrl: ""
     },
     {
         quote: "The real-time flow metrics helped us identify bottlenecks we never knew existed. Productivity up 40%.",
