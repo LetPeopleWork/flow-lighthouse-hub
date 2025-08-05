@@ -254,8 +254,9 @@ const LighthouseSection = () => {
           <p className="text-xs text-muted-foreground mt-4">Base Version Free forever • All Code is Open Source • Everything runs on your Infrstructure - No Third-Party Cloud Services involved</p>
         </div>
 
-        {/* Testimonials Slider */}
+        {/* Testimonials Slider 
         <LighthouseTestimonials />
+        */}
       </div>
     </section>
   );

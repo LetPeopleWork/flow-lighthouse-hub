@@ -496,12 +496,13 @@ const Lighthouse = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section DONT FORGET TO ENABLE THE NAVIGATION LINK AGAIN
       <section id="lighthouse-testimonials" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <LighthouseTestimonials />
         </div>
       </section>
+      */}
 
       {/* Why Premium Section */}
       <section id="lighthouse-premium" className="py-20 bg-gradient-subtle">
@@ -616,7 +617,7 @@ const Lighthouse = () => {
                     <td className="py-3 px-4 text-muted-foreground">Number of Teams</td>
                     <td className="py-3 px-4 text-center text-muted-foreground">Max 3</td>
                     <td className="py-3 px-4 text-center text-foreground font-semibold bg-gradient-primary bg-clip-text text-transparent">Unlimited</td>
-                    
+
                   </tr>
                   <tr>
                     <td className="py-3 px-4 text-muted-foreground">Number of Projects</td>
@@ -787,7 +788,7 @@ const Lighthouse = () => {
                   <p className="text-muted-foreground mb-2">
                     Valid for one year from the date of purchase
                   </p>
-                    <div className="text-sm text-muted-foreground mb-6">
+                  <div className="text-sm text-muted-foreground mb-6">
                     <p className="mb-2">Please contact us at licensing@letpeople.work if you:</p>
                     <ul className="space-y-1 ml-4">
                       <li>• Are interested in a trial license</li>
@@ -795,7 +796,7 @@ const Lighthouse = () => {
                       <li>• Need a custom invoice</li>
                       <li>• Have any other license related question</li>
                     </ul>
-                    </div>
+                  </div>
 
                   <div className="mb-6">
                     <div className="text-4xl font-bold text-foreground mb-2">
