@@ -624,7 +624,7 @@ const Lighthouse = () => {
                     <td className="py-3 px-4 text-center text-foreground font-semibold bg-gradient-primary bg-clip-text text-transparent">Unlimited</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 text-muted-foreground">Import Configuration from Another Instance</td>
+                    <td className="py-3 px-4 text-muted-foreground">Import and Export of Configuration</td>
                     <td className="py-3 px-4 text-center">
                       <XCircle className="h-5 w-5 text-red-500 mx-auto" />
                     </td>
