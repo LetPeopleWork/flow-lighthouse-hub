@@ -37,10 +37,12 @@ const testimonials: Testimonial[] = [
         companyUrl: "https://focusrite.com/"
     },
     {
-        quote: "",
+        quote: "Lighthouse helped us be more on to it. We’re now more predictable, efficient, and responsive when it comes to delivering value and serving our customers. It’s made planning sessions run smoother and helped set clearer expectations with our stakeholders. The insights we get from the data really sharpen our conversations and keep us focused on what matters.",
         author: "Gonzalo Mendez",
-        role: "CTO",
-        authorUrl: "https://www.linkedin.com/in/gonzalo-mendez-nz/"
+        role: "Scrum Master",
+        authorUrl: "https://www.linkedin.com/in/gonzalo-mendez-nz/",
+        company: "Mitre 10 (New Zealand) Ltd.",
+        companyUrl: "https://www.mitre10.co.nz/"
     },
     {
         quote: "",
