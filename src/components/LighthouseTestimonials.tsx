@@ -21,7 +21,7 @@ const testimonials: Testimonial[] = [
         companyUrl: ""
     },
     {
-        quote: "Lighthouse transformed how we understand and optimize our team's workflow. The insights are invaluable.",
+        quote: "",
         author: "Agnieszka Reginek",
         role: "Professional Kanban Trainer | Scrum Master",
         company: "",
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
         companyUrl: ""
     },
     {
-        quote: "Finally, data-driven decisions instead of gut feelings. Our forecasting accuracy improved dramatically.",
+        quote: "Lighthouse has transformed how we approach delivery. By prompting the right questions earlier and using the default feature size function to quickly forecast “how much?”, it provides a lean, cost‑effective way to surface risk and enable better decisions.",
         author: "Chris Graves",
         role: "Agile Coach",
         company: "Focusrite",
@@ -37,16 +37,22 @@ const testimonials: Testimonial[] = [
         companyUrl: "https://focusrite.com/"
     },
     {
-        quote: "The Swiss quality and privacy standards give us confidence in using Lighthouse for sensitive projects.",
+        quote: "",
         author: "Gonzalo Mendez",
         role: "CTO",
         authorUrl: "https://www.linkedin.com/in/gonzalo-mendez-nz/"
     },
     {
-        quote: "Open source core with premium enterprise features - exactly what we needed for our scaling organization.",
+        quote: "",
         author: "Gábor Bittera",
         role: "VP Engineering",
         authorUrl: "https://www.linkedin.com/in/gaborbittera/"
+    },
+    {
+        quote: "",
+        author: "Hendra Gunawan",
+        role: "VP Engineering",
+        authorUrl: "https://www.linkedin.com/in/hendragunawan823/"
     }
 ];
 
@@ -134,9 +140,12 @@ const NavigationButton = ({
 );
 
 const LighthouseTestimonials = () => {
-    // Shuffle testimonials on every component load
+    // Filter out testimonials with empty quotes and shuffle on every component load
     const shuffledTestimonials = useMemo(() => {
-        const shuffled = [...testimonials];
+        const validTestimonials = testimonials.filter(testimonial => 
+            testimonial.quote && testimonial.quote.trim() !== ''
+        );
+        const shuffled = [...validTestimonials];
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
